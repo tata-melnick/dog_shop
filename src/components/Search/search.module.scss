@@ -1,0 +1,27 @@
+.searchLb {
+  position: relative;
+  width: 470px;
+  height: 50px;
+}
+
+.input {
+  padding: 10px 20px;
+  width: 100%;
+  background: #fff;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  outline: none;
+  color: #000;
+  font-size: 16px;
+  line-height: 20px;
+  caret-color: #000;
+}
+
+.input:focus {
+  background: #FFFFFF;
+  border: 1px solid #FED700;
+}
+
+.input::placeholder {
+  color: #7b8e98;
+}
