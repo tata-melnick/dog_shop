@@ -15,10 +15,10 @@ const Header: React.FC = () => {
       </Button>
       <Search />
       <div>
-        <Button link="#" className={styles.btnMargin}>
+        <Button link="#" className={styles.iconMargin}>
           <Favorites />
         </Button>
-        <Button link="#" className={styles.btnMargin}>
+        <Button link="#" className={styles.iconMargin}>
           <Basket />
         </Button>
         <Button link="#">

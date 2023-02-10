@@ -6,26 +6,31 @@
   padding: 15px 25px;
   width: 355px;
   height: 50px;
+
+  &:hover {
+    color: #ffe440;
+    transition: .3s;
+  }
 }
 
 .btnFilled {
-  background: #FFE44D;
+  background: #ffe44d;
   border-radius: 55px;
 }
 
-.btnText {}
+.btnText {
+}
 
 .btnClose {
   position: absolute;
-  top: 10px;
+  top: 13px;
   right: 20px;
 }
 
-.link {}
+.link {
 
-.iconBtn {
-
-  &Margin {
-    margin-right: 40px;
+  &:hover {
+    color: #ffe440;
+    transition: .3s;
   }
 }
