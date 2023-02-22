@@ -1,0 +1,23 @@
+@import "./src/constants/colors";
+
+.sort {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 15px;
+  border-radius: 10px;
+  height: 45px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
+  background: $white;
+  margin-bottom: 40px;
+  gap: 15px;
+}
+
+.btn {
+  transition: margin-top 200ms;
+
+  &:hover {
+    color: $violet;
+    margin-top: -3px;
+  }
+}

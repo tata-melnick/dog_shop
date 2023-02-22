@@ -11,17 +11,17 @@
   width: 100%;
   background: #fff;
   border-radius: 25px;
-  border: 1px solid transparent;
+  border: 1px solid #666666;
   outline: none;
   color: #000;
   font-size: 16px;
   line-height: 20px;
-  caret-color: #000;
+  caret-color: #666666;
 }
 
 .input:focus {
   background: #FFFFFF;
-  border: 2px solid #000;
+  border: 1px solid #66666640;
 }
 
 .input::placeholder {

@@ -41,6 +41,7 @@
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "react/function-component-definition": "off",
+    "no-underscore-dangle": "off",
     "default-param-last": "off",
     "func-names": "off",
     "no-console": ["warn", { "allow": ["warn", "error"] }],

@@ -1,0 +1,11 @@
+@import "./src/constants/colors";
+
+.like {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.liked > svg {
+  fill: $red;
+}

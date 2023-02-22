@@ -1,0 +1,88 @@
+@import "./src/constants/colors";
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 15px;
+  border-radius: 10px;
+  min-height: 405px;
+  width: 100%;
+  transition: transform 200ms;
+}
+
+.card:hover {
+  box-shadow: 0 2px 4px rgba(40, 41, 61, 0.04), 0 8px 16px rgba(96, 97, 112, 0.16);
+  transform: scale(1.05);
+}
+
+.card:focus-within {
+  box-shadow: 0 0 1px rgba(40, 41, 61, 0.16), 0 0.5px 2px rgba(96, 97, 112, 0.24);
+}
+
+.image {
+  width: 100%;
+  height: 185px;
+  object-fit: contain;
+  margin-bottom: 30px;
+  &Mb {
+    margin-bottom: 46.5px;
+  }
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: $black;
+  line-height: 1;
+
+  &Old {
+    text-decoration: line-through;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.discount {
+  color: $red;
+}
+
+.wight {
+  font-size: 13px;
+  line-height: 14px;
+  font-weight: 500;
+  color: $grey;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.name {
+  font-weight: 600;
+  line-height: 20px;
+  margin-bottom: 15px;
+}
+
+.sticky {
+  position: absolute;
+  padding: 10px;
+}
+
+.stickyLeft {
+  display: flex;
+  top: 0;
+  left: 0;
+}
+
+.stickyRight {
+  top: 0;
+  right: 0;
+}
+
+.link {
+  &:hover {
+    color: $black;
+  }
+}

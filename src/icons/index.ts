@@ -1,0 +1,11 @@
+export { default as LogoIcon } from "./LogoIcon";
+export { default as CloseIcon } from "./CloseIcon";
+export { default as FavoritesIcon } from "./FavoritesIcon";
+export { default as BasketIcon } from "./BasketIcon";
+export { default as ProfileIcon } from "./ProfileIcon";
+export { default as TelegramIcon } from "./TelegramIcon";
+export { default as WhatsAppIcon } from "./WhatsAppIcon";
+export { default as ViberIcon } from "./ViberIcon";
+export { default as InstagramIcon } from "./InstagramIcon";
+export { default as VkIcon } from "./VkIcon";
+export { default as LikeIcon } from "./LikeIcon";

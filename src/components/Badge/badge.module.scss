@@ -1,0 +1,22 @@
+@import "./src/constants/colors";
+
+.tag {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.new {
+  background: $violet;
+  color: $white;
+  text-transform: uppercase;
+  margin-right: 5px;
+}
+
+.sale {
+  background: $yellow;
+}

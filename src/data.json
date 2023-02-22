@@ -1,0 +1,11 @@
+{
+  "name": "Иван Иванов",
+  "about": "Писатель",
+  "avatar": "https://react-learning.ru/image-compressed/default-image.jpg",
+  "isAdmin": false,
+  "id": "63ef83a13aa285034f78ab85",
+  "email": "tatyana.melnik23@gmail.com",
+  "group": "group-10",
+  "__v": 0,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VmODNhMTNhYTI4NTAzNGY3OGFiODUiLCJncm91cCI6Imdyb3VwLTEwIiwiaWF0IjoxNjc2NjQxMjI3LCJleHAiOjE3MDgxNzcyMjd9.uPxOXeaFUjtBoNqaCE_VcrB1EfpVOm0RIMvxxHM98BI"
+}

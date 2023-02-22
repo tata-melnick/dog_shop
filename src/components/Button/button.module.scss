@@ -1,24 +1,48 @@
+@import "./src/constants/colors";
+
 .btn {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 15px 25px;
-  width: 355px;
-  height: 50px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnFilled {
+  background: $blue;
+  border-radius: 55px;
+  border: none;
 
   &:hover {
-    color: #ffe440;
+    background: $blue;
+    background: $yellow;
+    color: $darkBlue;
     transition: .3s;
   }
 }
 
-.btnFilled {
-  background: #ffe44d;
+.btnOutline {
+  background: $white;
+  color: $darkBlue;
   border-radius: 55px;
+  border: 2px solid $blue;
+  font-size: 12px;
+
+  &:hover {
+    background: $yellow;
+    color: $darkBlue;
+    transition: .3s;
+  }
 }
 
 .btnText {
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 0;
 }
 
 .btnClose {
@@ -30,7 +54,7 @@
 .link {
 
   &:hover {
-    color: #ffe440;
+    color: $yellow;
     transition: .3s;
   }
 }
