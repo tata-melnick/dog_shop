@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./header.module.scss";
 import { LogoIcon, FavoritesIcon, BasketIcon, ProfileIcon } from "../../icons";
-import Search from "../../components/Search/Search";
-import Button from "../../components/Button";
+import { Search, Button } from "../../components";
 
 const Header: React.FC = () => {
   return (

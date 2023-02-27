@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Card from "../Card";
-import style from "./cardList.module.scss";
+import style from "./cardsList.module.scss";
 import CardContext from "../../context/cardContext";
 
 interface ICardsListProps {

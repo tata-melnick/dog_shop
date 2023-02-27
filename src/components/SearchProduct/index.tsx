@@ -1,21 +1,21 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
-import styles from "./search.module.scss";
+import styles from "./searchProduct.module.scss";
 import Button from "../Button";
 import { CloseIcon } from "../../icons";
-import stylesBtn from "../Button/button.module.scss";
 import CardContext from "../../context/cardContext";
 import { API, ProductsType } from "../../api";
 import useDebounce from "../../helpers/debounce";
 
-const Search: React.FC = () => {
+const SearchProduct: React.FC = () => {
   const [value, setValue] = useState("");
   const debounceValue = useDebounce<string>(value, 2000);
-  const { setCards, setAmount, setSearchValue } = useContext(CardContext);
+  const { setCards, setAmount, setSearchValue, setIsLoad } = useContext(CardContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
   const delValue = () => setValue("");
 
   const search = async () => {
+    setIsLoad(true);
     let newCards: ProductsType;
     if (debounceValue) {
       newCards = await API.SearchProducts(debounceValue);
@@ -27,6 +27,7 @@ const Search: React.FC = () => {
     }
     setSearchValue(value);
     setCards(newCards);
+    setIsLoad(false);
   };
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const Search: React.FC = () => {
         placeholder="Поиск"
       />
       {!!value && (
-        <Button onClick={delValue} link="#" className={stylesBtn.btnClose}>
+        <Button onClick={delValue} link="#" className={styles.btnClose}>
           <CloseIcon />
         </Button>
       )}
@@ -52,4 +53,4 @@ const Search: React.FC = () => {
   );
 };
 
-export default Search;
+export default SearchProduct;
