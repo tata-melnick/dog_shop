@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardsList from "../../components/CardsList";
 import styles from "./productsPage.module.scss";
-import SortOptions from "../../components/SortOptions";
-import CardContext from "../../context/cardContext";
 import getIssues from "../../helpers/getIssue";
-import NotFound from "../../components/NotFound";
-import { Loader } from "../../components";
+import { Loader, SortOptions, NotFound } from "../../components";
+import { useAppSelector } from "../../store";
 
 const ProductsPage: React.FC = () => {
-  const { amount, searchValue, isLoad } = useContext(CardContext);
+  const { all, isLoad, amount, searchValue } = useAppSelector((store) => store.products);
 
   return (
     <div className={styles.container}>
@@ -24,10 +22,10 @@ const ProductsPage: React.FC = () => {
           {amount ? (
             <>
               <SortOptions />
-              <CardsList />
+              <CardsList cards={all} />
             </>
           ) : (
-            <NotFound />
+            <NotFound title="Простите, по вашему запросу товаров не надено." paragraph="" />
           )}
         </>
       )}

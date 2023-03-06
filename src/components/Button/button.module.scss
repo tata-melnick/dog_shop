@@ -12,6 +12,7 @@
 
 .btnFilled {
   background: $blue;
+  color: $white;
   border-radius: 55px;
   border: none;
 
@@ -28,11 +29,11 @@
   color: $darkBlue;
   border-radius: 55px;
   border: 2px solid $blue;
-  font-size: 12px;
+  font-size: 14px;
 
   &:hover {
-    background: $yellow;
-    color: $darkBlue;
+    background: $blue;
+    color: $white;
     transition: .3s;
   }
 }

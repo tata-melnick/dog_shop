@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import Button from "../Button";
-import { API, ProductType } from "../../api";
+import Button from "../../Button";
+import { API, ProductType, ProductsType } from "../../../api";
 import styles from "./card.module.scss";
-import Badge from "../Badge";
-import Like from "../Like";
-import data from "../../data.json";
+import Badge from "../../Badge";
+import Like from "../../Like";
+import data from "../../../data.json";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { setFavoritesProducts } from "../../../store/products/actions";
 
 const Card: React.FC<ProductType> = ({
   pictures,
@@ -16,11 +18,19 @@ const Card: React.FC<ProductType> = ({
   tags,
   likes: initLikes,
 }) => {
+  const dispatch = useAppDispatch();
+  const { all, favorites } = useAppSelector((state) => state.products);
   const [likes, setLikes] = useState<Array<string>>(initLikes);
 
   const handleLike = async () => {
     const response = await API.ChangeLikeProductStatus(_id, !likes.includes(data.id));
     setLikes(response.likes);
+
+    let newFavorites: ProductsType;
+    if (response.likes.includes(data.id))
+      newFavorites = [...favorites, all.find((el) => el._id === response._id)];
+    else newFavorites = favorites.filter((el) => el._id !== response._id);
+    dispatch(setFavoritesProducts(newFavorites));
   };
 
   return (

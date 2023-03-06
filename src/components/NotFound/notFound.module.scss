@@ -1,3 +1,5 @@
+@import "../../constants/colors";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,14 @@
   font-weight: 700;
 }
 
-.margin {
-  margin: 25px 0 20px;
+.title {
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+.paragraph {
+  color: $grey;
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 20px;
 }

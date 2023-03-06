@@ -1,18 +1,13 @@
-import React, { useContext } from "react";
-import Card from "../Card";
+import React from "react";
+import Card from "./Card";
 import style from "./cardsList.module.scss";
-import CardContext from "../../context/cardContext";
+import { ProductsType } from "../../api";
 
 interface ICardsListProps {
-  product?: string;
-  onProductLike?: string;
-  setCounter?(count: string): void;
-  handleProductLike?(): void;
+  cards: ProductsType;
 }
 
-const CardsList: React.FC<ICardsListProps> = () => {
-  const { cards } = useContext(CardContext);
-
+const CardsList: React.FC<ICardsListProps> = ({ cards }) => {
   return (
     <div className={style.cards}>
       {cards && cards.map((item) => <Card {...item} key={item._id} />)}

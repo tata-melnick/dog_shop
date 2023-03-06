@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "../Button";
 import styles from "./sortOptions.module.scss";
-import CardContext from "../../context/cardContext";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { ProductsType } from "../../api";
+import { setAllProducts } from "../../store/products/actions";
 
 type SortValues = "popular" | "new" | "cheapFirst" | "dearFirst" | "rating" | "discount";
 type SortOptionsType = Array<{ name: string; value: SortValues }>;
@@ -16,33 +18,36 @@ const options: SortOptionsType = [
 ];
 
 const SortOptions: React.FC = () => {
-  const { setCards, cards } = useContext(CardContext);
+  const dispatch = useAppDispatch();
+  const { all } = useAppSelector((state) => state.products);
+
+  const setCards = (cards: ProductsType) => dispatch(setAllProducts(cards));
 
   const sort = (value: SortValues) => {
     switch (value) {
       case "popular": {
-        setCards([...cards.sort((a, b) => b.likes.length - a.likes.length)]);
+        setCards([...all.sort((a, b) => b.likes.length - a.likes.length)]);
         break;
       }
       case "new": {
         setCards([
-          ...cards.sort(
+          ...all.sort(
             (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
           ),
         ]);
         break;
       }
       case "cheapFirst": {
-        setCards([...cards.sort((a, b) => a.price - b.price)]);
+        setCards([...all.sort((a, b) => a.price - b.price)]);
         break;
       }
       case "dearFirst": {
-        setCards([...cards.sort((a, b) => b.price - a.price)]);
+        setCards([...all.sort((a, b) => b.price - a.price)]);
         break;
       }
       case "rating": {
         setCards([
-          ...cards.sort((a, b) => {
+          ...all.sort((a, b) => {
             const aR = a.reviews.reduce((sum, el) => sum + el.rating, 0) / a.reviews.length;
             const bR = b.reviews.reduce((sum, el) => sum + el.rating, 0) / b.reviews.length;
             return aR - bR;
@@ -51,7 +56,7 @@ const SortOptions: React.FC = () => {
         break;
       }
       case "discount": {
-        setCards([...cards.sort((a, b) => b.discount - a.discount)]);
+        setCards([...all.sort((a, b) => b.discount - a.discount)]);
         break;
       }
       default:

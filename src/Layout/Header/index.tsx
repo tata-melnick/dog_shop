@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       </Button>
       <Search />
       <div>
-        <Button link="#" className={styles.iconMargin}>
+        <Button link="favorites" className={styles.iconMargin}>
           <FavoritesIcon />
         </Button>
         <Button link="#" className={styles.iconMargin}>
