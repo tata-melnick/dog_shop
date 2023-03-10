@@ -1,0 +1,18 @@
+@import "./src/constants/colors";
+
+.container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  height: max-content;
+  margin-bottom: 40px;
+  width: 60%;
+}
+
+.imageBtn {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 5px rgba($blue, 0.3)) drop-shadow(0px 2px 16px rgba($blue, 0.2));
+  border-radius: 13px;
+}

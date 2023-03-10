@@ -9,3 +9,5 @@ export { default as ViberIcon } from "./ViberIcon";
 export { default as InstagramIcon } from "./InstagramIcon";
 export { default as VkIcon } from "./VkIcon";
 export { default as LikeIcon } from "./LikeIcon";
+export { default as QualityIcon } from "./QualityIcon";
+export { default as TruckIcon } from "./TruckIcon";

@@ -1,8 +1,8 @@
 enum RouterNames {
   main = "/",
-  products = "products",
-  favorites = "favorites",
-  detail = "detail",
+  products = "/products",
+  favorites = "/favorites",
+  detail = "/detail",
   error = "*",
 }
 

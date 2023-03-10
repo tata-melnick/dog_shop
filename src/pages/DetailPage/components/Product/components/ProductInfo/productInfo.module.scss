@@ -1,0 +1,76 @@
+@import "./src/constants/colors";
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: $black;
+  line-height: 1;
+
+  &Old {
+    text-decoration: line-through;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.discount {
+  color: $red;
+  margin-bottom: 25px;
+}
+
+.btn {
+  margin-bottom: 25px;
+}
+
+.favorites {
+  margin-left: 10px;
+  color: $grey;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.delivery {
+  display: flex;
+  background-color: rgba(236, 239, 241, 0.6);
+  border-radius: 12px;
+  padding: 12px;
+  align-items: flex-start;
+  width: 345px;
+}
+
+.delivery:not(.delivery:last-child) {
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+.conditions {
+  margin-left: 12px;
+  width: 275px;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text:not(.text:last-child) {
+  margin-bottom: 8px;
+}
+
+.bold {
+  font-weight: 700;
+}

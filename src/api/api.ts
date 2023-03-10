@@ -33,7 +33,7 @@ class API {
     return response.json();
   }
 
-  async SearchProductId(productId: string): Promise<ProductsType> {
+  async GetProductById(productId: string): Promise<ProductType> {
     const response = await fetch(`${this.options.baseUrl}/products/${productId}`, {
       method: "GET",
       headers: this.options.headers,

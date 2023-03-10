@@ -1,0 +1,59 @@
+@import "./src/constants/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text:not(.text:last-child) {
+  margin-bottom: 8px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  row-gap: 20px;
+}
+
+.naming {
+  font-size: 16px;
+  line-height: 20px;
+  color: $grey;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.description p {
+  margin-bottom: 12px;
+}
+
+.mB {
+  margin-bottom: 40px;
+}

@@ -8,6 +8,7 @@ import Like from "../../Like";
 import data from "../../../data.json";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setFavoritesProducts } from "../../../store/products/actions";
+import RouterNames from "../../../constants/routes";
 
 const Card: React.FC<ProductType> = ({
   pictures,
@@ -44,7 +45,7 @@ const Card: React.FC<ProductType> = ({
         onClick={handleLike}
         outerClass={`${styles.sticky} ${styles.stickyRight}`}
       />
-      <Button link="#" className={styles.link}>
+      <Button link={`${RouterNames.detail}?id=${_id}`} className={styles.link}>
         <img
           className={cn([styles.image, { [styles.imageMb]: !discount }])}
           src={pictures}
