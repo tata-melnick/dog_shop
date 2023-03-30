@@ -18,8 +18,6 @@ const Input: React.FC<IInputProps> = ({
   onChange,
   withoutAutocomplete,
 }) => {
-  const settings = { autoComplete: "new-password" };
-
   return (
     <label htmlFor="close" className={styles.searchLb}>
       <div />
@@ -30,7 +28,7 @@ const Input: React.FC<IInputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        {...(withoutAutocomplete ? settings : {})}
+        autoComplete={withoutAutocomplete ? "new-password" : ""}
       />
     </label>
   );
