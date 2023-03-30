@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./headLineProduct.module.scss";
 import { ProductType } from "../../../../../../api";
 import BackIcon from "../../../../../../icons/BackIcon";
@@ -9,21 +10,22 @@ interface IHeadLineProductProps {
   reviews: ProductType["reviews"];
 }
 
-const getStr = (num: number): string => {
-  const lastNum = num % 10;
-  if (lastNum > 4 || !num || (num > 10 && num < 20)) return `${num} отзывов`;
-  if (lastNum > 1 && lastNum < 5) return `${num} отзыва`;
-  if (lastNum === 1) return `${num} отзыв`;
-  return "";
-};
-
 const HeadLineProduct: React.FC<IHeadLineProductProps> = ({ name, reviews }) => {
+  const navigate = useNavigate();
+  const goToProducts = () => navigate("/");
   const averageRating = reviews.reduce((sum, el) => sum + el.rating, 0) / reviews.length;
+  const getStr = (num: number): string => {
+    const lastNum = num % 10;
+    if (lastNum > 4 || !num || (num > 10 && num < 20)) return `${num} отзывов`;
+    if (lastNum > 1 && lastNum < 5) return `${num} отзыва`;
+    if (lastNum === 1) return `${num} отзыв`;
+    return "";
+  };
   return (
     <div className={styles.container}>
       <div className={styles.wrap}>
         <BackIcon />
-        <Button link="products" className={styles.btn}>
+        <Button onClick={goToProducts} className={styles.btn}>
           Назад
         </Button>
       </div>

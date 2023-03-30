@@ -166,7 +166,7 @@ class API {
 
   // ПРО ПОЛЬЗОВАТЕЛЯ
 
-  static async GetAllUsers(users: string): Promise<ProductType> {
+  static async GetAllUsers(users: string): Promise<UserType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/${users}`, {
       method: "GET",

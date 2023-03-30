@@ -1,14 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
 import { LogoIcon, FavoritesIcon, BasketIcon, ProfileIcon } from "../../icons";
 import { Search, Button, Bubble } from "../../components";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setModalAuth } from "../../store/modals/actions";
+import RouterNames from "../../constants/routes";
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { favorites } = useAppSelector((store) => store.products);
 
+  const goToFavorites = () => navigate(RouterNames.favorites);
   const openAuthModal = () => dispatch(setModalAuth(true));
 
   return (
@@ -18,7 +22,7 @@ const Header: React.FC = () => {
       </Button>
       <Search />
       <div className={styles.icon}>
-        <Button link="favorites" className={styles.iconMargin}>
+        <Button onClick={goToFavorites} className={styles.iconMargin}>
           {favorites.length !== 0 && <Bubble>{favorites.length}</Bubble>}
           <FavoritesIcon />
         </Button>

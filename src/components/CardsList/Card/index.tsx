@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import Button from "../../Button";
 import { API, ProductType, ProductsType } from "../../../api";
 import styles from "./card.module.scss";
 import Badge from "../../Badge";
 import Like from "../../Like";
-import data from "../../../data.json";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setFavoritesProducts } from "../../../store/products/actions";
 import RouterNames from "../../../constants/routes";
@@ -20,16 +20,21 @@ const Card: React.FC<ProductType> = ({
   likes: initLikes,
 }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { all, favorites } = useAppSelector((state) => state.products);
+
+  const { data } = useAppSelector((state) => state.user);
   const [likes, setLikes] = useState<Array<string>>(initLikes);
   // const [addBasket, setAddBasket] = useState<string>("");
 
+  const goToProduct = () => navigate(`${RouterNames.detail}?id=${_id}`);
+
   const handleLike = async () => {
-    const response = await API.ChangeLikeProductStatus(_id, !likes.includes(data.id));
+    const response = await API.ChangeLikeProductStatus(_id, !likes.includes(data._id));
     setLikes(response.likes);
 
     let newFavorites: ProductsType;
-    if (response.likes.includes(data.id))
+    if (response.likes.includes(data._id))
       newFavorites = [...favorites, all.find((el) => el._id === response._id)];
     else newFavorites = favorites.filter((el) => el._id !== response._id);
     dispatch(setFavoritesProducts(newFavorites));
@@ -54,11 +59,11 @@ const Card: React.FC<ProductType> = ({
         {!!discount && <Badge label={`-${discount}%`} color="yellow" />}
       </div>
       <Like
-        isLiked={likes.includes(data.id)}
+        isLiked={likes.includes(data._id)}
         onClick={handleLike}
         outerClass={`${styles.sticky} ${styles.stickyRight}`}
       />
-      <Button link={`${RouterNames.detail}?id=${_id}`} className={styles.link}>
+      <Button onClick={goToProduct} className={styles.link}>
         <img
           className={cn([styles.image, { [styles.imageMb]: !discount }])}
           src={pictures}

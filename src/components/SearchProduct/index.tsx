@@ -12,12 +12,12 @@ import {
   setIsLoadProducts,
   setIsSearchValue,
 } from "../../store/products/actions";
-import data from "../../data.json";
+// import data from "../../data.json";
 
 const SearchProduct: React.FC = () => {
   const dispatch = useAppDispatch();
   const { favorites } = useAppSelector((state) => state.products);
-  const { token } = useAppSelector((state) => state.user);
+  const { data, token } = useAppSelector((state) => state.user);
   const [value, setValue] = useState("");
   const debounceValue = useDebounce<string>(value, 1000);
 
@@ -39,7 +39,7 @@ const SearchProduct: React.FC = () => {
       const { products, total } = await API.GetProducts();
       newCards = products;
       dispatch(setIsAmountProducts(total));
-      newFavorites = newCards.filter((el) => el.likes.includes(data.id));
+      newFavorites = newCards.filter((el) => el.likes.includes(data._id));
     }
     dispatch(setIsSearchValue(value));
     dispatch(setAllProducts(newCards));

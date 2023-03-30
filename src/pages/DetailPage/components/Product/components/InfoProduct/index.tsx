@@ -5,7 +5,6 @@ import Button from "../../../../../../components/Button";
 import { useAppDispatch, useAppSelector } from "../../../../../../store";
 import { API, ProductsType, ProductType } from "../../../../../../api";
 import Like from "../../../../../../components/Like";
-import data from "../../../../../../data.json";
 import { setFavoritesProducts } from "../../../../../../store/products/actions";
 import { MinusIcon, PlusIcon, TruckIcon, QualityIcon } from "../../../../../../icons";
 
@@ -19,6 +18,7 @@ interface IInfoProductProps {
 const InfoProduct: React.FC<IInfoProductProps> = ({ price, discount, likes: initLikes, id }) => {
   const dispatch = useAppDispatch();
   const { all, favorites } = useAppSelector((state) => state.products);
+  const { data } = useAppSelector((state) => state.user);
   const [likes, setLikes] = useState<Array<string>>(initLikes);
   const [amount, setAmount] = useState<number>(0);
 
@@ -26,11 +26,11 @@ const InfoProduct: React.FC<IInfoProductProps> = ({ price, discount, likes: init
   const amountPlus = () => setAmount(() => amount + 1);
 
   const handleLike = async () => {
-    const response = await API.ChangeLikeProductStatus(id, !likes.includes(data.id));
+    const response = await API.ChangeLikeProductStatus(id, !likes.includes(data?._id));
     setLikes(response.likes);
 
     let newFavorites: ProductsType;
-    if (response.likes.includes(data.id))
+    if (response.likes.includes(data?._id))
       newFavorites = [...favorites, all.find((el) => el._id === response._id)];
     else newFavorites = favorites.filter((el) => el._id !== response._id);
     dispatch(setFavoritesProducts(newFavorites));
@@ -59,12 +59,12 @@ const InfoProduct: React.FC<IInfoProductProps> = ({ price, discount, likes: init
         </Button>
       </div>
       <Like
-        isLiked={likes && likes.includes(data.id)}
+        isLiked={likes && likes.includes(data?._id)}
         onClick={handleLike}
         outerClass={`${styles.sticky}`}
       >
         <span className={styles.favorites}>
-          {likes && likes.includes(data.id) ? "В избранном" : "В избранное"}
+          {likes && likes.includes(data?._id) ? "В избранном" : "В избранное"}
         </span>
       </Like>
       <div className={styles.delivery}>
