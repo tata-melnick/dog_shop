@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../../../components/Button";
+import { Button } from "../../../../components";
 import { LogoIcon } from "../../../../icons";
 import styles from "./leftFooter.module.scss";
 

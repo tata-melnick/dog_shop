@@ -1,5 +1,6 @@
 export { default as LogoIcon } from "./LogoIcon";
 export { default as CloseIcon } from "./CloseIcon";
+export { default as CloseModalIcon } from "./CloseModalIcon";
 export { default as FavoritesIcon } from "./FavoritesIcon";
 export { default as BasketIcon } from "./BasketIcon";
 export { default as ProfileIcon } from "./ProfileIcon";
@@ -9,5 +10,8 @@ export { default as ViberIcon } from "./ViberIcon";
 export { default as InstagramIcon } from "./InstagramIcon";
 export { default as VkIcon } from "./VkIcon";
 export { default as LikeIcon } from "./LikeIcon";
+export { default as Star } from "./Star";
+export { default as MinusIcon } from "./MinusIcon";
+export { default as PlusIcon } from "./PlusIcon";
 export { default as QualityIcon } from "./QualityIcon";
 export { default as TruckIcon } from "./TruckIcon";

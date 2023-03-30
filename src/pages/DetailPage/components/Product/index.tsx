@@ -5,11 +5,11 @@ import { Loader } from "../../../../components";
 import { useAppSelector } from "../../../../store";
 import { API, ProductType } from "../../../../api";
 import {
-  ProductImage,
-  ProductImagesSelector,
-  ProductInfo,
-  ProductDescription,
-  ProductHeading,
+  DescriptionProduct,
+  HeadLineProduct,
+  ImageProduct,
+  ImagesSelectorProduct,
+  InfoProduct,
 } from "./components";
 
 const Product: React.FC = () => {
@@ -34,22 +34,22 @@ const Product: React.FC = () => {
         <Loader />
       ) : (
         <>
-          <ProductHeading name={product?.name} />
+          <HeadLineProduct name={product?.name} reviews={product?.reviews} />
           <div className={styles.productWrap}>
-            <ProductImage
+            <ImageProduct
               tags={product?.tags}
               pictures={product?.pictures}
               discount={product?.discount}
             />
-            <ProductImagesSelector pictures={product?.pictures} />
-            <ProductInfo
+            <ImagesSelectorProduct pictures={product?.pictures} />
+            <InfoProduct
               price={product?.price}
               discount={product?.discount}
               likes={product?.likes}
               id={product?._id}
             />
           </div>
-          <ProductDescription description={product?.description} />
+          <DescriptionProduct description={product?.description} />
         </>
       )}
     </div>

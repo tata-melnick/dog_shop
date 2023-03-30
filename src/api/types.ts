@@ -1,3 +1,17 @@
+export type SignInData = { email: string; password: string };
+
+export type SignUpData = SignInData & { group: string };
+
+export type UserType = {
+  name: string;
+  about: string;
+  avatar: string;
+  isAdmin: boolean;
+  _id: string;
+  email: string;
+  group: string;
+};
+
 export type AuthorType = {
   about: string;
   avatar: string;
@@ -37,5 +51,7 @@ export type ProductType = NewProductType & {
   _id: string;
 };
 
+export type SignInResponse = { data: UserType; token: string };
+export type RecoverResponse = { message: string };
 export type ProductsType = Array<ProductType>;
 export type GetProductsResult = { total: number; products: ProductsType };

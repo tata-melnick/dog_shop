@@ -9,7 +9,7 @@
 .price {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
   color: $black;
   line-height: 1;
 
@@ -17,19 +17,46 @@
     text-decoration: line-through;
     font-size: 13px;
     font-weight: 600;
+    margin-bottom: 5px;
   }
 }
 
 .discount {
   color: $red;
+}
+
+.btns {
+  display: flex;
+  width: 100%;
   margin-bottom: 25px;
 }
 
 .btn {
-  margin-bottom: 25px;
+  flex: 1;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  margin-right: 20px;
+  padding: 10px 10px;
+  background-color: #fff;
+  border: 1px solid rgba($grey, 0.3);
+  border-radius: 25px;
+
+  & .num {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 24px;
+    width: 20px;
+    text-align: center;
+  }
 }
 
 .favorites {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
   margin-left: 10px;
   color: $grey;
 }
@@ -44,7 +71,7 @@
 
 .delivery {
   display: flex;
-  background-color: rgba(236, 239, 241, 0.6);
+  background-color: rgba($blue, 0.2);
   border-radius: 12px;
   padding: 12px;
   align-items: flex-start;

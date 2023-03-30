@@ -22,3 +22,24 @@
   font-weight: 800;
   font-size: 28px;
 }
+
+.rateInfo {
+  display: flex;
+  gap: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.art {
+  color: $grey;
+}
+
+.reviews {
+  color: $darkBlue;
+  text-decoration-line: underline;
+
+  &:hover {
+  color: $blue;
+}
+}

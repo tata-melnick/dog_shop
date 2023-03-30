@@ -11,15 +11,13 @@
 }
 
 .btnFilled {
-  background: $blue;
+  background: $darkBlue;
   color: $white;
   border-radius: 55px;
   border: none;
 
   &:hover {
     background: $blue;
-    background: $yellow;
-    color: $darkBlue;
     transition: .3s;
   }
 }
@@ -28,12 +26,11 @@
   background: $white;
   color: $darkBlue;
   border-radius: 55px;
-  border: 2px solid $blue;
-  font-size: 14px;
+  border: 2px solid $darkBlue;
 
   &:hover {
-    background: $blue;
-    color: $white;
+    color: $blue;
+    border: 2px solid $blue;
     transition: .3s;
   }
 }
@@ -44,6 +41,12 @@
   font-weight: 600;
   font-size: 13px;
   padding: 0;
+}
+
+.btnOff{
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
 }
 
 .btnClose {

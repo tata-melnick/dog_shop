@@ -17,6 +17,7 @@ import data from "../../data.json";
 const SearchProduct: React.FC = () => {
   const dispatch = useAppDispatch();
   const { favorites } = useAppSelector((state) => state.products);
+  const { token } = useAppSelector((state) => state.user);
   const [value, setValue] = useState("");
   const debounceValue = useDebounce<string>(value, 1000);
 
@@ -24,6 +25,7 @@ const SearchProduct: React.FC = () => {
   const delValue = () => setValue("");
 
   const search = async () => {
+    if (!token) return;
     dispatch(setIsLoadProducts(true));
     let newCards: ProductsType;
     let newFavorites: ProductsType;
@@ -47,7 +49,7 @@ const SearchProduct: React.FC = () => {
 
   useEffect(() => {
     search().catch((e) => console.error(e));
-  }, [debounceValue]);
+  }, [debounceValue, token]);
 
   return (
     <label htmlFor="close" className={styles.searchLb}>

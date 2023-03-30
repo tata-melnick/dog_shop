@@ -3,11 +3,11 @@
 .container {
   position: relative;
   transition: transform 200ms;
+  border-radius: 10px;
 
   &:hover {
     box-shadow: 0 5px 5px rgba($darkBlue, 0.05), 0 5px 20px rgba($blue, 0.20);
     transform: scale(1.05);
-    border-radius: 10px;
   }
 
   &:focus-within {
@@ -19,6 +19,7 @@
   width: 490px;
   height: 490px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 .sticky {

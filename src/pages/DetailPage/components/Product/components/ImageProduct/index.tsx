@@ -1,17 +1,17 @@
 import React from "react";
 import cn from "classnames";
-import styles from "./productImage.module.scss";
+import styles from "./imageProduct.module.scss";
 import { ProductType } from "../../../../../../api";
 import Badge from "../../../../../../components/Badge";
 import { Button } from "../../../../../../components";
 
-interface IProductLeftProps {
+interface IImageProductProps {
   tags: ProductType["tags"];
   discount: ProductType["discount"];
   pictures: ProductType["pictures"];
 }
 
-const ProductImage: React.FC<IProductLeftProps> = ({ tags, pictures, discount }) => {
+const ImageProduct: React.FC<IImageProductProps> = ({ tags, pictures, discount }) => {
   return (
     <div className={styles.container}>
       <div className={cn(styles.sticky, styles.stickyLeft)}>
@@ -25,4 +25,4 @@ const ProductImage: React.FC<IProductLeftProps> = ({ tags, pictures, discount })
   );
 };
 
-export default ProductImage;
+export default ImageProduct;

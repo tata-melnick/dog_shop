@@ -22,6 +22,7 @@ const Card: React.FC<ProductType> = ({
   const dispatch = useAppDispatch();
   const { all, favorites } = useAppSelector((state) => state.products);
   const [likes, setLikes] = useState<Array<string>>(initLikes);
+  // const [addBasket, setAddBasket] = useState<string>("");
 
   const handleLike = async () => {
     const response = await API.ChangeLikeProductStatus(_id, !likes.includes(data.id));
@@ -34,11 +35,23 @@ const Card: React.FC<ProductType> = ({
     dispatch(setFavoritesProducts(newFavorites));
   };
 
+  // const handleBasket = () => {
+  //   const addProduct = all._id.includes(_id, !addBasket.includes(data.id));
+  //   setAddBasket(addProduct.addBasket);
+  //   console.log(addProduct);
+  //
+  //   let newBasket = "";
+  //   if (basket.includes(data.id))
+  //     newBasket = [...basket, all.find((el) => el.products._id === addProduct.products._id)];
+  //   else newBasket = basket.filter((el) => el.products._id !== addProduct.products._id);
+  //   dispatch(setIsBasket(newBasket));
+  // };
+
   return (
     <div className={styles.card}>
       <div className={cn(styles.sticky, styles.stickyLeft)}>
         {tags.includes("new") && <Badge label="new" color="violet" />}
-        {!!discount && <Badge label={`${discount}%`} color="yellow" />}
+        {!!discount && <Badge label={`-${discount}%`} color="yellow" />}
       </div>
       <Like
         isLiked={likes.includes(data.id)}

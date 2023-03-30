@@ -1,86 +1,276 @@
-import { GetProductsResult, NewProductType, ProductsType, ProductType } from "./types";
-import MyData from "../data.json";
+import {
+  GetProductsResult,
+  NewProductType,
+  ProductsType,
+  ProductType,
+  RecoverResponse,
+  SignInData,
+  SignInResponse,
+  SignUpData,
+  UserType,
+} from "./types";
+// import MyData from "../data.json";
+import { TOKEN } from "../constants/storage";
 
 type OptionsType = {
   baseUrl: string;
   groupId: string;
-  headers: {
-    authorization: string;
-    "Content-Type": string;
-  };
 };
 
 class API {
-  constructor(options: OptionsType) {
-    this.options = options;
-  }
+  static options: OptionsType = {
+    baseUrl: "https://api.react-learning.ru",
+    groupId: "/v2/group-10",
+  };
 
-  options: OptionsType = null;
+  // options: OptionsType = null;
 
-  async GetProducts(): Promise<GetProductsResult> {
+  // ПРО ПРОДУКТЫ
+
+  static async GetProducts(): Promise<GetProductsResult> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products`, {
       method: "GET",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
     });
     return response.json();
   }
 
-  async SearchProducts(search: any): Promise<ProductsType> {
+  static async SearchProducts(search: any): Promise<ProductsType> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/search?query=${search}`, {
       method: "GET",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
     });
     return response.json();
   }
 
-  async GetProductById(productId: string): Promise<ProductType> {
+  static async GetProductById(productId: string): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/${productId}`, {
       method: "GET",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
     });
     return response.json();
   }
 
-  async AddNewProduct(data: NewProductType): Promise<ProductType> {
+  static async AddNewProduct(data: NewProductType): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products`, {
       method: "POST",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
       body: JSON.stringify(data),
     });
     return response.json();
   }
 
-  async EditProduct(productId: string): Promise<ProductsType> {
+  static async EditProduct(productId: string): Promise<ProductsType> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/${productId}`, {
       method: "PATCH",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
     });
     return response.json();
   }
 
-  async DeleteProduct(productId: string): Promise<ProductsType> {
+  static async DeleteProduct(productId: string): Promise<ProductsType> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/${productId}`, {
       method: "DELETE",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
     });
     return response.json();
   }
 
-  async ChangeLikeProductStatus(productId: string, like): Promise<ProductType> {
+  static async ChangeLikeProductStatus(productId: string, like): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/likes/${productId}`, {
       method: like ? "PUT" : "DELETE",
-      headers: this.options.headers,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  static async AddNewReview(productId: string, body): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}/products/review/${productId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+      body: JSON.stringify(productId, body),
+    });
+    return response.json();
+  }
+
+  static async DeleteReview(productId: string, reviewId: string): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(
+      `${this.options.baseUrl}/products/review/${productId}/${reviewId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { authorization: `Bearer ${token}` }),
+        },
+      }
+    );
+    return response.json();
+  }
+
+  static async GetAllReviews(review): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}/products/${review}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  static async GetAllReviewsById(productId: string, reviewId: string): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}/products/${productId}/${reviewId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  // ПРО ПОЛЬЗОВАТЕЛЯ
+
+  static async GetAllUsers(users: string): Promise<ProductType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}/${users}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  static async GetUserInfo(): Promise<UserType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}${this.options.groupId}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  static async GetUserById(users: string, userId: string): Promise<UserType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}/${users}/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  static async EditUserInfo(users: string, me: string): Promise<UserType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}//${users}/${me}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  static async EditUserAvatar(users: string, me: string, avatar: string): Promise<UserType> {
+    const token = window.sessionStorage.getItem(TOKEN);
+    const response = await fetch(`${this.options.baseUrl}//${users}/${me}/${avatar}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { authorization: `Bearer ${token}` }),
+      },
+    });
+    return response.json();
+  }
+
+  // ПРО РЕГИСТРАЦИЮ
+
+  static async SignUp(data: SignUpData): Promise<UserType> {
+    const response = await fetch(`${this.options.baseUrl}/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
+
+  static async SignIn(data: SignInData): Promise<SignInResponse> {
+    const response = await fetch(`${this.options.baseUrl}/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
+
+  static async Recover(email: string): Promise<RecoverResponse> {
+    const response = await fetch(`${this.options.baseUrl}/forgot-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+    return response.json();
+  }
+
+  static async ResetPass(token: string, password: string): Promise<SignInResponse> {
+    const response = await fetch(`${this.options.baseUrl}/password-reset/${token}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password }),
     });
     return response.json();
   }
 }
 
-export default new API({
-  baseUrl: "https://api.react-learning.ru",
-  headers: {
-    authorization: `Bearer ${MyData.token}`,
-    // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJmOTk5MmFlNWM0MGMxMGMxMWRmZTQiLCJpYXQiOjE2NDcyODY2ODEsImV4cCI6MTY3ODgyMjY4MX0.WHKXAErKZtY445yXecOFZsx981MuXicJti-okSY-tac",
-    "Content-Type": "application/json",
-  },
-  groupId: "/v2/group-7",
-});
+export default API;

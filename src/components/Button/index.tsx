@@ -3,19 +3,27 @@ import cn from "classnames";
 import styles from "./button.module.scss";
 
 interface IButtonProps {
-  type?: "filled" | "text" | "outline";
+  type?: "filled" | "text" | "outline" | "link";
   link?: string;
   className?: string;
   children?: React.ReactNode;
   onClick?(): void;
+  disabled?: boolean;
 }
 
-const Button: React.FC<IButtonProps> = ({ children, onClick, className, type = "text", link }) => {
+const Button: React.FC<IButtonProps> = ({
+  children,
+  onClick,
+  className,
+  type = "text",
+  link,
+  disabled,
+}) => {
   const handleClickLink = (e: SyntheticEvent) => {
     e.preventDefault();
     onClick();
   };
-  if (link)
+  if (link || type === "link")
     return (
       <a
         onClick={onClick ? handleClickLink : undefined}
@@ -34,6 +42,7 @@ const Button: React.FC<IButtonProps> = ({ children, onClick, className, type = "
         { [styles.btnText]: type === "text" },
         { [styles.btnFilled]: type === "filled" },
         { [styles.btnOutline]: type === "outline" },
+        { [styles.btnOff]: disabled },
         className,
       ])}
     >

@@ -1,10 +1,14 @@
 import { createStore, combineReducers } from "redux";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import productReducer from "./products/reducer";
+import userReducer from "./user/reducer";
+import modalsReducer from "./modals/reducer";
 
 export const store = createStore(
   combineReducers({
     products: productReducer,
+    modals: modalsReducer,
+    user: userReducer,
   }),
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

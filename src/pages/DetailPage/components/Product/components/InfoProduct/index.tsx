@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import styles from "./productInfo.module.scss";
+import styles from "./infoProduct.module.scss";
 import Button from "../../../../../../components/Button";
 import { useAppDispatch, useAppSelector } from "../../../../../../store";
 import { API, ProductsType, ProductType } from "../../../../../../api";
 import Like from "../../../../../../components/Like";
 import data from "../../../../../../data.json";
 import { setFavoritesProducts } from "../../../../../../store/products/actions";
-import { TruckIcon, QualityIcon } from "../../../../../../icons";
+import { MinusIcon, PlusIcon, TruckIcon, QualityIcon } from "../../../../../../icons";
 
-interface IProductRightProps {
+interface IInfoProductProps {
   price: ProductType["price"];
   discount: ProductType["discount"];
   likes: ProductType["likes"];
   id: ProductType["_id"];
 }
 
-const ProductInfo: React.FC<IProductRightProps> = ({ price, discount, likes, id }) => {
+const InfoProduct: React.FC<IInfoProductProps> = ({ price, discount, likes: initLikes, id }) => {
   const dispatch = useAppDispatch();
   const { all, favorites } = useAppSelector((state) => state.products);
-  const [isLikes, setLikes] = useState<Array<string>>(likes);
+  const [likes, setLikes] = useState<Array<string>>(initLikes);
+  const [amount, setAmount] = useState<number>(0);
+
+  const amountMinus = () => setAmount(() => amount - 1);
+  const amountPlus = () => setAmount(() => amount + 1);
 
   const handleLike = async () => {
     const response = await API.ChangeLikeProductStatus(id, !likes.includes(data.id));
@@ -40,12 +44,27 @@ const ProductInfo: React.FC<IProductRightProps> = ({ price, discount, likes, id 
           {price && discount && Math.round(price - price * (discount / 100))} ₽
         </div>
       )}
-      <Button type="filled" className={styles.btn}>
-        В корзину
-      </Button>
-      <Like isLiked={isLikes && isLikes.includes(data.id)} onClick={handleLike} outerClass={``}>
+      <div className={styles.btns}>
+        <div className={styles.controls}>
+          <Button type="text" onClick={amountMinus} className={styles.btn} disabled={amount === 0}>
+            <MinusIcon disabled={amount === 0} />
+          </Button>
+          <span className={styles.num}>{amount}</span>
+          <Button type="text" onClick={amountPlus}>
+            <PlusIcon />
+          </Button>
+        </div>
+        <Button type="filled" className={styles.btn}>
+          В корзину
+        </Button>
+      </div>
+      <Like
+        isLiked={likes && likes.includes(data.id)}
+        onClick={handleLike}
+        outerClass={`${styles.sticky}`}
+      >
         <span className={styles.favorites}>
-          {likes === isLikes ? "В избранном" : "В избранное"}
+          {likes && likes.includes(data.id) ? "В избранном" : "В избранное"}
         </span>
       </Like>
       <div className={styles.delivery}>
@@ -74,4 +93,4 @@ const ProductInfo: React.FC<IProductRightProps> = ({ price, discount, likes, id 
   );
 };
 
-export default ProductInfo;
+export default InfoProduct;

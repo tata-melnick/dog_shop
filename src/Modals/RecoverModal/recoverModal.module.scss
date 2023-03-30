@@ -1,0 +1,29 @@
+@import "../../constants/colors";
+
+.titleWrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 32px;
+  color: #000000;
+}
+
+.close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+.paragraph {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: $grey;
+  margin-bottom: 15px;
+}

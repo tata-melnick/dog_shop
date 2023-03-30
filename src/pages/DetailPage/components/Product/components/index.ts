@@ -1,5 +1,5 @@
-export { default as ProductHeading } from "./ProductHeading";
-export { default as ProductImage } from "./ProductImage";
-export { default as ProductImagesSelector } from "./ProductImagesSelector";
-export { default as ProductInfo } from "./ProductInfo";
-export { default as ProductDescription } from "./ProductDescription";
+export { default as HeadLineProduct } from "./HeadLineProduct";
+export { default as ImageProduct } from "./ImageProduct";
+export { default as ImagesSelectorProduct } from "./ImagesSelectorProduct";
+export { default as InfoProduct } from "./InfoProduct";
+export { default as DescriptionProduct } from "./DescriptionProduct";

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../../../components/Button";
+import { Button } from "../../../../components";
 import styles from "./centerFooter.module.scss";
 
 const CenterFooter: React.FC = () => {

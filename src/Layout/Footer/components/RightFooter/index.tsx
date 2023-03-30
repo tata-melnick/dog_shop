@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../../../components/Button";
+import { Button } from "../../../../components";
 import styles from "./rightFooter.module.scss";
 import { TelegramIcon, WhatsAppIcon, ViberIcon, InstagramIcon, VkIcon } from "../../../../icons";
 

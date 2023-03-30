@@ -1,0 +1,12 @@
+.reviews {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.review {
+  font-size: 15px;
+}

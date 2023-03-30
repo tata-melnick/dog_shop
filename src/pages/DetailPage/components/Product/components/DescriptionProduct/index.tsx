@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./productDescription.module.scss";
+import styles from "./descriptionProduct.module.scss";
 import { ProductType } from "../../../../../../api";
 
-interface IProductDescriptionProps {
+interface IDescriptionProductProps {
   description: ProductType["description"];
 }
 
-const ProductDescription: React.FC<IProductDescriptionProps> = ({ description }) => {
+const DescriptionProduct: React.FC<IDescriptionProductProps> = ({ description }) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Описание</h2>
@@ -36,4 +36,4 @@ const ProductDescription: React.FC<IProductDescriptionProps> = ({ description })
   );
 };
 
-export default ProductDescription;
+export default DescriptionProduct;
