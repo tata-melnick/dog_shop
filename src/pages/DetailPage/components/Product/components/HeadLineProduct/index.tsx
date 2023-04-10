@@ -13,7 +13,9 @@ interface IHeadLineProductProps {
 const HeadLineProduct: React.FC<IHeadLineProductProps> = ({ name, reviews }) => {
   const navigate = useNavigate();
   const goToProducts = () => navigate("/");
-  const averageRating = reviews.reduce((sum, el) => sum + el.rating, 0) / reviews.length;
+  const averageRating = reviews
+    ? reviews.reduce((sum, el) => sum + el.rating, 0) / reviews.length
+    : 0;
   const getStr = (num: number): string => {
     const lastNum = num % 10;
     if (lastNum > 4 || !num || (num > 10 && num < 20)) return `${num} отзывов`;
@@ -36,7 +38,7 @@ const HeadLineProduct: React.FC<IHeadLineProductProps> = ({ name, reviews }) => 
         </div>
         <Rating rating={averageRating} />
         <Button link="#" className={styles.reviews}>
-          {getStr(reviews.length)}
+          {getStr(reviews?.length)}
         </Button>
       </div>
     </div>

@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./searchProduct.module.scss";
 import Button from "../Button";
 import { CloseIcon } from "../../icons";
@@ -9,64 +10,66 @@ import {
   setAllProducts,
   setFavoritesProducts,
   setIsAmountProducts,
-  setIsLoadProducts,
-  setIsSearchValue,
 } from "../../store/products/actions";
-// import data from "../../data.json";
+import { setInputValue, setIsLoad, setIsSearchValue } from "../../store/settings/actions";
+import Input from "../Input";
 
 const SearchProduct: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { favorites } = useAppSelector((state) => state.products);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { inputValue } = useAppSelector((state) => state.settings);
   const { data, token } = useAppSelector((state) => state.user);
-  const [value, setValue] = useState("");
-  const debounceValue = useDebounce<string>(value, 1000);
+  const debounceValue = useDebounce<string>(inputValue, 1000);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
-  const delValue = () => setValue("");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+    dispatch(setInputValue(e.target.value));
+  const delValue = () => dispatch(setInputValue(""));
 
   const search = async () => {
     if (!token) return;
-    dispatch(setIsLoadProducts(true));
+    dispatch(setIsLoad(true));
     let newCards: ProductsType;
     let newFavorites: ProductsType;
     if (debounceValue) {
       newCards = await API.SearchProducts(debounceValue);
       dispatch(setIsAmountProducts(newCards.length));
-      newFavorites = favorites.filter((el) =>
-        el.name.toLowerCase().includes(debounceValue.toLowerCase())
-      );
+      navigate("/");
     } else {
       const { products, total } = await API.GetProducts();
       newCards = products;
       dispatch(setIsAmountProducts(total));
-      newFavorites = newCards.filter((el) => el.likes.includes(data._id));
+      newFavorites = newCards.filter((el) => el.likes.includes(data?._id));
+      // newFavorites = favorites?.filter((el) =>
+      //   el.name.toLowerCase().includes(debounceValue.toLowerCase())
+      // );
+      dispatch(setFavoritesProducts(newFavorites));
     }
-    dispatch(setIsSearchValue(value));
     dispatch(setAllProducts(newCards));
-    dispatch(setFavoritesProducts(newFavorites));
-    dispatch(setIsLoadProducts(false));
+    dispatch(setIsSearchValue(inputValue));
+    dispatch(setIsLoad(false));
   };
 
   useEffect(() => {
     search().catch((e) => console.error(e));
-  }, [debounceValue, token]);
+  }, [debounceValue, token, data, pathname]);
 
   return (
-    <label htmlFor="close" className={styles.searchLb}>
-      <input
+    <div className={styles.searchLb}>
+      <Input
         type="text"
-        value={value}
+        value={inputValue}
         onChange={handleChange}
         id="close"
-        className={styles.input}
         placeholder="Поиск"
+        place="search"
       />
-      {!!value && (
+      {!!inputValue && (
         <Button onClick={delValue} link="#" className={styles.btnClose}>
           <CloseIcon />
         </Button>
       )}
-    </label>
+    </div>
   );
 };
 

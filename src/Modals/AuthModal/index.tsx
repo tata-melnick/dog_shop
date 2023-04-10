@@ -47,8 +47,20 @@ const AuthModal: React.FC = () => {
           <CloseModalIcon />
         </Button>
       </div>
-      <Input value={email} onChange={handleSetEmail} type="email" placeholder="Email" />
-      <Input value={password} onChange={handleSetPassword} type="password" placeholder="Пароль" />
+      <Input
+        value={email}
+        onChange={handleSetEmail}
+        type="email"
+        placeholder="Email"
+        place="modal"
+      />
+      <Input
+        value={password}
+        onChange={handleSetPassword}
+        type="password"
+        placeholder="Пароль"
+        place="modal"
+      />
       <div className={styles.btn}>
         <Button type="text" className={styles.btnText} onClick={openRecover}>
           Восстановить пароль

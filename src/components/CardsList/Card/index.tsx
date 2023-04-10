@@ -18,6 +18,7 @@ const Card: React.FC<ProductType> = ({
   discount,
   tags,
   likes: initLikes,
+  wight,
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const Card: React.FC<ProductType> = ({
             {Math.round(price - price * (discount / 100))} ₽
           </div>
         )}
-        <div className={styles.wight}>1шт</div>
+        <div className={styles.wight}>{wight}</div>
         <p className={styles.name}>{name}</p>
       </Button>
       <Button type="filled">В корзину</Button>

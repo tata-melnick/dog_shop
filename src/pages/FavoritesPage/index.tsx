@@ -8,7 +8,8 @@ import BackIcon from "../../icons/BackIcon";
 
 const FavoritesPage: React.FC = () => {
   const navigate = useNavigate();
-  const { favorites, isLoad } = useAppSelector((store) => store.products);
+  const { favorites } = useAppSelector((store) => store.products);
+  const { isLoad } = useAppSelector((store) => store.settings);
 
   const goToProducts = () => navigate("/");
 

@@ -24,13 +24,12 @@ const InfoProduct: React.FC<IInfoProductProps> = ({ price, discount, likes: init
 
   const amountMinus = () => setAmount(() => amount - 1);
   const amountPlus = () => setAmount(() => amount + 1);
-
   const handleLike = async () => {
     const response = await API.ChangeLikeProductStatus(id, !likes.includes(data?._id));
     setLikes(response.likes);
 
     let newFavorites: ProductsType;
-    if (response.likes.includes(data?._id))
+    if (response.likes?.includes(data?._id))
       newFavorites = [...favorites, all.find((el) => el._id === response._id)];
     else newFavorites = favorites.filter((el) => el._id !== response._id);
     dispatch(setFavoritesProducts(newFavorites));

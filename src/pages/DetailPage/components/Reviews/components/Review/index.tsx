@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 // import cn from "classnames";
 // import { useForm } from "react-hook-form";
-import { Button } from "../../../../../../components";
+import { Button, Form } from "../../../../../../components";
 import styles from "./review.module.scss";
 // import { ProductType } from "../../../../../../api";
 
@@ -10,7 +10,7 @@ import styles from "./review.module.scss";
 // }
 
 const Review: React.FC = () => {
-  // const [showForm, setShowForm] = useState<boolean>(false);
+  const [showForm, setShowForm] = useState(false);
   // const [reviewsProduct, setReviewsProduct] = useState(reviews ?? []);
   //
   // const {
@@ -34,12 +34,14 @@ const Review: React.FC = () => {
   return (
     <div className={styles.headLine}>
       <h1 className={styles.title}>Отзывы</h1>
-      <Button type="outline" className={styles.btn}>
+      <Button type="outline" className={styles.btn} onClick={() => setShowForm(true)}>
         Написать отзыв
       </Button>
-      {/* {showForm && ( */}
-      {/* <div>/!*<Form />*!/</div> */}
-      {/* )} */}
+      {showForm && (
+        <div>
+          <Form />
+        </div>
+      )}
       {/* <div className={styles.images}> */}
       {/*  <h3 className={cn(styles.images, styles.title)}>Фотографии наших покупателей</h3> */}
       {/*  <div className={styles.images} /> */}

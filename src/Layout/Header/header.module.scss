@@ -2,7 +2,7 @@
 
 .container {
   display: flex;
-  gap: 10px;
+  gap: 40px;
   background-color: $blue;
   padding: 10px 15%;
   justify-content: space-between;
@@ -11,13 +11,17 @@
   height: 80px;
 }
 
-.icon {
+.icons {
   display: flex;
-  gap: 40px
+  gap: 40px;
 }
 
-.iconMargin {
+.icon {
   position: relative;
+
+  &:hover {
+  color: $yellow;
+  }
 }
 
 .bubble {

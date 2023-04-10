@@ -1,19 +1,30 @@
 import React from "react";
+// import { useForm } from "react-hook-form";
 import styles from "./form.module.scss";
+//
+// interface IFormProps {
+//   children?: React.ReactNode;
+//   // submitForm: React.FormEvent;
+// }
 
-interface IFormProps {
-  children?: React.ReactNode;
-  title: string;
-  // submitForm: React.FormEvent;
-}
+const Form: React.FC = () => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({ mode: "onSubmit" });
+  //
+  // const textRegister = register("review", {
+  //   required: "review обязателен",
+  // });
 
-const Form: React.FC<IFormProps> = ({ children, title }) => {
   return (
     <div className={styles.container}>
-      <form className="form">
-        <h1 className="form__title">{title}</h1>
-        {children}
-      </form>
+      {/* <form className="form"> */}
+      {/*  <h1 className="form__title">Оставьте ваш отзыв</h1> */}
+      {/*  <textarea>{...textRegister}</textarea> */}
+      {/*  <Button></Button> */}
+      {/* </form> */}
     </div>
   );
 };

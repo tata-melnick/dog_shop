@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from "react";
+import cn from "classnames";
 import styles from "./input.module.scss";
 
 interface IInputProps {
@@ -8,6 +9,7 @@ interface IInputProps {
   value: string;
   onChange?(e: ChangeEvent<HTMLInputElement>): void;
   withoutAutocomplete?: boolean;
+  place: "search" | "modal";
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -17,6 +19,7 @@ const Input: React.FC<IInputProps> = ({
   value,
   onChange,
   withoutAutocomplete,
+  place,
 }) => {
   return (
     <label htmlFor="close" className={styles.searchLb}>
@@ -24,7 +27,11 @@ const Input: React.FC<IInputProps> = ({
       <input
         type={type}
         id={id}
-        className={styles.input}
+        className={cn([
+          styles.input,
+          { [styles.search]: place === "search" },
+          { [styles.modal]: place === "modal" },
+        ])}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

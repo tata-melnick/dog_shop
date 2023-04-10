@@ -59,16 +59,29 @@ const RecoverModal: React.FC = () => {
         Для получения временного пароля необходимо ввести email, указанный при регистрации.
       </p>
       {!isConfirm && (
-        <Input value={email} onChange={handleSetEmail} type="email" placeholder="Email" />
+        <Input
+          value={email}
+          onChange={handleSetEmail}
+          type="email"
+          placeholder="Email"
+          place="modal"
+        />
       )}
       {isConfirm && (
         <>
-          <Input value={token} onChange={handleSetToken} type="text" placeholder="Token" />
+          <Input
+            value={token}
+            onChange={handleSetToken}
+            type="text"
+            placeholder="Token"
+            place="modal"
+          />
           <Input
             value={password}
             onChange={handleSetPassword}
             type="password"
             placeholder="Password"
+            place="modal"
           />
         </>
       )}

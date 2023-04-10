@@ -54,20 +54,23 @@ const RegistrationModal: React.FC = () => {
         onChange={handleSetEmail}
         type="email"
         placeholder="Email"
+        place="modal"
       />
       <Input
         withoutAutocomplete
         value={password}
         onChange={handleSetPassword}
         type="password"
-        placeholder="Password"
+        placeholder="Пароль"
+        place="modal"
       />
       <Input
         withoutAutocomplete
         value={verifyPassword}
         onChange={handleSetVerifyPassword}
         type="password"
-        placeholder="Password"
+        placeholder="Пароль"
+        place="modal"
       />
       <p className={styles.paragraph}>
         Регистрируясь на сайте, вы соглашаетесь с нашими Правилами и Политикой конфиденциальности и

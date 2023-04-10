@@ -11,6 +11,7 @@ const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { favorites } = useAppSelector((store) => store.products);
+  // const { token } = useAppSelector((store) => store.user);
 
   const goToFavorites = () => navigate(RouterNames.favorites);
   const openAuthModal = () => dispatch(setModalAuth(true));
@@ -21,12 +22,12 @@ const Header: React.FC = () => {
         <LogoIcon />
       </Button>
       <Search />
-      <div className={styles.icon}>
-        <Button onClick={goToFavorites} className={styles.iconMargin}>
+      <div className={styles.icons}>
+        <Button onClick={goToFavorites} className={styles.icon}>
           {favorites.length !== 0 && <Bubble>{favorites.length}</Bubble>}
           <FavoritesIcon />
         </Button>
-        <Button type="link" className={styles.iconMargin}>
+        <Button type="link" className={styles.icon}>
           <Bubble>10</Bubble>
           <BasketIcon />
         </Button>

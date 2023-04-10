@@ -2,17 +2,19 @@ import React from "react";
 import CardsList from "../../components/CardsList";
 import styles from "./productsPage.module.scss";
 import getIssues from "../../helpers/getIssue";
-import { Loader, SortOptions, NotFound } from "../../components";
+import { Loader, SortOptions, NotFound, NotAuth } from "../../components";
 import { useAppSelector } from "../../store";
 
 const ProductsPage: React.FC = () => {
-  const { all, isLoad, amount, searchValue } = useAppSelector((store) => store.products);
+  const { all, amount } = useAppSelector((store) => store.products);
+  const { isLoad, searchValue } = useAppSelector((store) => store.settings);
+  const { token } = useAppSelector((store) => store.user);
 
   return (
     <div className={styles.container}>
-      {isLoad ? (
-        <Loader />
-      ) : (
+      {!isLoad && !token && <NotAuth />}
+      {isLoad && <Loader />}
+      {token && !isLoad && (
         <>
           {searchValue && (
             <h1 className={styles.title}>
