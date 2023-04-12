@@ -10,11 +10,11 @@ const DetailPage: React.FC = () => {
   const { search } = useLocation();
   const id = search.split("=")[1];
   const [product, setProduct] = useState<ProductType>(null);
+  // const [reviews, setReviews] = useState<ProductType>(null);
 
   useEffect(() => {
     API.GetProductById(id).then((resp) => setProduct(resp));
   }, []);
-
   return (
     <div className={styles.container}>
       {!product ? (
@@ -22,7 +22,7 @@ const DetailPage: React.FC = () => {
       ) : (
         <>
           <Product product={product} />
-          <Reviews />
+          <Reviews productId={product._id} />
           <ImagesModal />
         </>
       )}

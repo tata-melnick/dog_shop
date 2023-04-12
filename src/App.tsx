@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import { ProductsPage, ErrorPage, FavoritesPage, DetailPage } from "./pages";
+import { ProductsPage, ErrorPage, FavoritesPage, DetailPage, FAQ } from "./pages";
 import RouterNames from "./constants/routes";
 import { setModalAuth } from "./store/modals/actions";
 import { TOKEN } from "./constants/storage";
@@ -27,6 +27,7 @@ const App: React.FC = () => {
         <Route index path="/" element={<ProductsPage />} />
         <Route path={RouterNames.favorites} element={<FavoritesPage />} />
         <Route path={RouterNames.detail} element={<DetailPage />} />
+        <Route path={RouterNames.faq} element={<FAQ />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

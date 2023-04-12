@@ -41,6 +41,12 @@
   font-weight: 600;
   font-size: 13px;
   padding: 0;
+  justify-content: flex-start;
+
+  &:hover {
+    color: $yellow;
+    transition: .3s;
+  }
 }
 
 .btnOff{

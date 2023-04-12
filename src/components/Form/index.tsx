@@ -1,13 +1,13 @@
 import React from "react";
-// import { useForm } from "react-hook-form";
+import cn from "classnames";
 import styles from "./form.module.scss";
-//
-// interface IFormProps {
-//   children?: React.ReactNode;
-//   // submitForm: React.FormEvent;
-// }
 
-const Form: React.FC = () => {
+interface IFormProps {
+  children?: React.ReactNode;
+  submitForm(): void;
+}
+
+const Form: React.FC<IFormProps> = ({ children, submitForm }) => {
   // const {
   //   register,
   //   handleSubmit,
@@ -19,13 +19,10 @@ const Form: React.FC = () => {
   // });
 
   return (
-    <div className={styles.container}>
-      {/* <form className="form"> */}
-      {/*  <h1 className="form__title">Оставьте ваш отзыв</h1> */}
-      {/*  <textarea>{...textRegister}</textarea> */}
-      {/*  <Button></Button> */}
-      {/* </form> */}
-    </div>
+    <form onSubmit={submitForm} className={cn("form", styles.container)}>
+      <h1 className="title">Оставьте ваш отзыв</h1>
+      {children}
+    </form>
   );
 };
 

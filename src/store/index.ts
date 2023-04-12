@@ -4,6 +4,7 @@ import productReducer from "./products/reducer";
 import userReducer from "./user/reducer";
 import modalsReducer from "./modals/reducer";
 import settingsReducer from "./settings/reducer";
+import reviewsReducer from "./reviews/reducer";
 
 export const store = createStore(
   combineReducers({
@@ -11,6 +12,7 @@ export const store = createStore(
     modals: modalsReducer,
     user: userReducer,
     settings: settingsReducer,
+    reviews: reviewsReducer,
   }),
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

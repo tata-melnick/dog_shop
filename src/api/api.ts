@@ -4,6 +4,7 @@ import {
   ProductsType,
   ProductType,
   RecoverResponse,
+  ReviewBody,
   SignInData,
   SignInResponse,
   SignUpData,
@@ -112,7 +113,7 @@ class API {
     return response.json();
   }
 
-  static async AddNewReview(productId: string, body): Promise<ProductType> {
+  static async AddNewReview(productId: string, body: ReviewBody): Promise<ProductType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/review/${productId}`, {
       method: "POST",
@@ -120,7 +121,7 @@ class API {
         "Content-Type": "application/json",
         ...(token && { authorization: `Bearer ${token}` }),
       },
-      body: JSON.stringify(productId, body),
+      body: JSON.stringify(body),
     });
     return response.json();
   }
@@ -166,9 +167,9 @@ class API {
 
   // ПРО ПОЛЬЗОВАТЕЛЯ
 
-  static async GetAllUsers(users: string): Promise<UserType> {
+  static async GetAllUsers(): Promise<UserType> {
     const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}/${users}`, {
+    const response = await fetch(`${this.options.baseUrl}/users`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

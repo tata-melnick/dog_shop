@@ -4,6 +4,7 @@ import styles from "./button.module.scss";
 
 interface IButtonProps {
   type?: "filled" | "text" | "outline" | "link";
+  submit?: boolean;
   link?: string;
   className?: string;
   children?: React.ReactNode;
@@ -18,6 +19,7 @@ const Button: React.FC<IButtonProps> = ({
   type = "text",
   link,
   disabled,
+  submit,
 }) => {
   const handleClickLink = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ const Button: React.FC<IButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      type="button"
+      type={submit ? "submit" : "button"}
       className={cn([
         styles.btn,
         { [styles.btnText]: type === "text" },

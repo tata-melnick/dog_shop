@@ -51,6 +51,11 @@ export type ProductType = NewProductType & {
   _id: string;
 };
 
+export type ReviewBody = {
+  text: string;
+  rating: number;
+};
+
 export type SignInResponse = { data: UserType; token: string };
 export type RecoverResponse = { message: string };
 export type ProductsType = Array<ProductType>;

@@ -20,6 +20,7 @@ const Product: React.FC<IProductProps> = ({ product }) => {
       <HeadLineProduct name={product?.name} reviews={product?.reviews} />
       <div className={styles.productWrap}>
         <ImageProduct
+          name={product?.name}
           tags={product?.tags}
           pictures={product?.pictures}
           discount={product?.discount}

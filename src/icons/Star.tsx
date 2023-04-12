@@ -1,11 +1,11 @@
 import React from "react";
 
 interface IStarProps {
-  type?: "outline" | "half" | "fill";
+  variant?: "outline" | "half" | "fill";
 }
 
-const Star: React.FC<IStarProps> = ({ type }) => {
-  switch (type) {
+const Star: React.FC<IStarProps> = ({ variant }) => {
+  switch (variant) {
     case "fill":
       return (
         <svg

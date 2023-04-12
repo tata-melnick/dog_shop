@@ -5,8 +5,6 @@ import NotFoundIcon from "../../icons/NotFoundIcon";
 import styles from "./notFound.module.scss";
 import { useAppDispatch } from "../../store";
 import { setInputValue } from "../../store/settings/actions";
-// import { useAppDispatch } from "../../store";
-// import { setInputValue } from "../../store/products/actions";
 
 interface INotFoundProps {
   title: string;

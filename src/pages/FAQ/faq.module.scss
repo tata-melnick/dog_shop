@@ -1,0 +1,18 @@
+@import "./src/constants/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  padding: 20px 15% 30px;
+  flex: 1;
+  height: 100%;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 32px;
+  color: $black;
+  margin-bottom: 20px;
+}

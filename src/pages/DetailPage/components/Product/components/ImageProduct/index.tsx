@@ -5,18 +5,19 @@ import styles from "./imageProduct.module.scss";
 import { ProductType } from "../../../../../../api";
 import Badge from "../../../../../../components/Badge";
 import { Button } from "../../../../../../components";
-import { setModalImages } from "../../../../../../store/modals/actions";
+import { setModalImage } from "../../../../../../store/modals/actions";
 import { useAppDispatch } from "../../../../../../store";
 
 interface IImageProductProps {
   tags: ProductType["tags"];
+  name: ProductType["name"];
   discount: ProductType["discount"];
   pictures: ProductType["pictures"];
 }
 
-const ImageProduct: React.FC<IImageProductProps> = ({ tags, pictures, discount }) => {
+const ImageProduct: React.FC<IImageProductProps> = ({ tags, pictures, name, discount }) => {
   const dispatch = useAppDispatch();
-  const openImagesModal = () => dispatch(setModalImages(true));
+  const openImagesModal = () => dispatch(setModalImage({ url: pictures, name }));
 
   return (
     <div className={styles.container}>

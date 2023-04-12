@@ -17,17 +17,16 @@
   line-height: 20px;
   caret-color: #666666;
   border-radius: 15px;
-}
 
-.input::placeholder {
-  color: #7b8e98;
+  &::placeholder {
+    color: #7b8e98;
+  }
 }
 
 .search {
   border-radius: 25px;
   border: 1px solid #666666;
   outline: none;
-
 
   &:focus {
     background: #FFFFFF;
