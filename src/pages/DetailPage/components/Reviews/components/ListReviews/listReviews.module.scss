@@ -1,3 +1,5 @@
+@import "./src/constants/colors";
+
 .reviews {
   display: flex;
   flex: 1;
@@ -8,5 +10,61 @@
 }
 
 .review {
-  font-size: 15px;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  border-top: 1px solid #eceff1;
+  padding: 1rem 0;
+}
+
+.author {
+  display: flex;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24px;
+  color: $black;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.data {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: end;
+  color: $grey;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: $black;
+}
+
+.btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  &:hover {
+    color: $red;
+  }
 }

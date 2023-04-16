@@ -4,7 +4,7 @@ export const SET_ALL_PRODUCTS = "SET_ALL_PRODUCTS";
 export const SET_FAVORITES_PRODUCTS = "SET_FAVORITES_PRODUCTS";
 export const SET_LIKES_PRODUCTS = "SET_LIKES_PRODUCTS";
 export const IS_AMOUNT_PRODUCTS = "IS_AMOUNT_PRODUCTS";
-// export const SET_REVIEWS_PRODUCT = "SET_REVIEWS_PRODUCT";
+export const SET_PRODUCT_DETAIL = "SET_PRODUCT_DETAIL";
 // export const SET_BASKET = "SET_BASKET";
 
 export const setAllProducts = (payload: ProductsType) => ({
@@ -23,10 +23,11 @@ export const setIsAmountProducts = (payload: number) => ({
   type: IS_AMOUNT_PRODUCTS,
   payload,
 });
-// export const setReviewProduct = (payload: ProductsType) => ({
-//   type: SET_REVIEWS_PRODUCT,
-//   payload,
-// });
+export const setProductDetail = (payload: ProductType) => ({
+  type: SET_PRODUCT_DETAIL,
+  payload,
+});
+
 // export const setIsBasket = (payload: {id:string,  } ) => ({
 //   type: SET_BASKET,
 //   payload,

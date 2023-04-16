@@ -1,19 +1,19 @@
 import {
   IS_AMOUNT_PRODUCTS,
   SET_ALL_PRODUCTS,
-  // SET_REVIEWS_PRODUCT,
   SET_FAVORITES_PRODUCTS,
   SET_LIKES_PRODUCTS,
   // SET_BASKET,
+  SET_PRODUCT_DETAIL,
 } from "./actions";
-import { ProductsType } from "../../api";
+import { ProductsType, ProductType } from "../../api";
 
 interface IInitialState {
   all: ProductsType;
   favorites: ProductsType;
   amount: number;
   likes: ProductsType;
-  // reviews: ProductsType;
+  product: ProductType;
   // basket: string;
 }
 
@@ -22,7 +22,7 @@ const initialState: IInitialState = {
   favorites: [],
   likes: [],
   amount: null,
-  // reviews: [],
+  product: null,
   // basket: "",
 };
 
@@ -36,8 +36,8 @@ function productReducer(state = initialState, action) {
       return { ...state, likes: action.payload };
     case IS_AMOUNT_PRODUCTS:
       return { ...state, amount: action.payload };
-    // case SET_REVIEWS_PRODUCT:
-    //   return { ...state, reviews: action.payload };
+    case SET_PRODUCT_DETAIL:
+      return { ...state, product: action.payload };
     // case SET_BASKET:
     //   return { ...state, basket: action.payload };
     default:

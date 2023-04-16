@@ -13,12 +13,13 @@ const Header: React.FC = () => {
   const { favorites } = useAppSelector((store) => store.products);
   // const { token } = useAppSelector((store) => store.user);
 
+  const goToProducts = () => navigate("/");
   const goToFavorites = () => navigate(RouterNames.favorites);
   const openAuthModal = () => dispatch(setModalAuth(true));
 
   return (
     <div className={styles.container}>
-      <Button link="#">
+      <Button onClick={goToProducts}>
         <LogoIcon />
       </Button>
       <Search />

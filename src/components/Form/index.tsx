@@ -8,16 +8,6 @@ interface IFormProps {
 }
 
 const Form: React.FC<IFormProps> = ({ children, submitForm }) => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({ mode: "onSubmit" });
-  //
-  // const textRegister = register("review", {
-  //   required: "review обязателен",
-  // });
-
   return (
     <form onSubmit={submitForm} className={cn("form", styles.container)}>
       <h1 className="title">Оставьте ваш отзыв</h1>

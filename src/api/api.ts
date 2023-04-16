@@ -5,9 +5,11 @@ import {
   ProductType,
   RecoverResponse,
   ReviewBody,
+  ReviewType,
   SignInData,
   SignInResponse,
   SignUpData,
+  UsersType,
   UserType,
 } from "./types";
 // import MyData from "../data.json";
@@ -113,7 +115,7 @@ class API {
     return response.json();
   }
 
-  static async AddNewReview(productId: string, body: ReviewBody): Promise<ProductType> {
+  static async AddReview(productId: string, body: ReviewBody): Promise<ProductType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/review/${productId}`, {
       method: "POST",
@@ -141,9 +143,9 @@ class API {
     return response.json();
   }
 
-  static async GetAllReviews(review): Promise<ProductType> {
+  static async GetReviews(): Promise<Array<Array<ReviewType>>> {
     const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}/products/${review}`, {
+    const response = await fetch(`${this.options.baseUrl}/products/review`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -153,9 +155,9 @@ class API {
     return response.json();
   }
 
-  static async GetAllReviewsById(productId: string, reviewId: string): Promise<ProductType> {
+  static async GetReviewsById(productId: string): Promise<Array<ReviewType>> {
     const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}/products/${productId}/${reviewId}`, {
+    const response = await fetch(`${this.options.baseUrl}/products/review/${productId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -167,7 +169,7 @@ class API {
 
   // ПРО ПОЛЬЗОВАТЕЛЯ
 
-  static async GetAllUsers(): Promise<UserType> {
+  static async GetUsers(): Promise<UsersType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/users`, {
       method: "GET",

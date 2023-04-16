@@ -22,6 +22,7 @@ const Card: React.FC<ProductType> = ({
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const { all, favorites } = useAppSelector((state) => state.products);
 
   const { data } = useAppSelector((state) => state.user);

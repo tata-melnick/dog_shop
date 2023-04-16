@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import styles from "./accordion.module.css";
+import styles from "./accordion.module.scss";
 import Button from "../Button";
 
 interface IAccordionProps {

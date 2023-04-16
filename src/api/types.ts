@@ -19,13 +19,19 @@ export type AuthorType = {
   name: string;
 };
 
-export type ReviewsType = {
+export type ReviewType = {
   author: string;
   created_at: string;
   product: string;
   rating: number;
   text: string;
   updated_at: string;
+  _id: string;
+};
+
+export type ReviewBody = {
+  text: string;
+  rating: number;
 };
 
 export type NewProductType = {
@@ -45,18 +51,14 @@ export type ProductType = NewProductType & {
   created_at: string;
   isPublished: boolean;
   likes: Array<string>;
-  reviews: Array<ReviewsType>;
+  reviews: Array<ReviewType>;
   tags: Array<any>;
   updated_at: string;
   _id: string;
 };
 
-export type ReviewBody = {
-  text: string;
-  rating: number;
-};
-
 export type SignInResponse = { data: UserType; token: string };
 export type RecoverResponse = { message: string };
 export type ProductsType = Array<ProductType>;
+export type UsersType = Array<UserType>;
 export type GetProductsResult = { total: number; products: ProductsType };

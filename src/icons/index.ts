@@ -15,3 +15,4 @@ export { default as MinusIcon } from "./MinusIcon";
 export { default as PlusIcon } from "./PlusIcon";
 export { default as QualityIcon } from "./QualityIcon";
 export { default as TruckIcon } from "./TruckIcon";
+export { default as TrashBinIcon } from "./TrashBinIcon";
