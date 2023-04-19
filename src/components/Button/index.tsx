@@ -9,12 +9,14 @@ interface IButtonProps {
   className?: string;
   children?: React.ReactNode;
   onClick?(): void;
+  onDoubleClick?(): void;
   disabled?: boolean;
 }
 
 const Button: React.FC<IButtonProps> = ({
   children,
   onClick,
+  onDoubleClick,
   className,
   type = "text",
   link,
@@ -38,6 +40,7 @@ const Button: React.FC<IButtonProps> = ({
   return (
     <button
       onClick={onClick}
+      onDoubleClick={onDoubleClick}
       type={submit ? "submit" : "button"}
       className={cn([
         styles.btn,

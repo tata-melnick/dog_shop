@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./searchProduct.module.scss";
 import Button from "../Button";
 import { CloseIcon } from "../../icons";
@@ -16,6 +16,7 @@ import Input from "../Input";
 
 const SearchProduct: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const { inputValue } = useAppSelector((state) => state.settings);
   const { data, token } = useAppSelector((state) => state.user);
@@ -33,6 +34,7 @@ const SearchProduct: React.FC = () => {
     if (debounceValue) {
       newCards = await API.SearchProducts(debounceValue);
       dispatch(setIsAmountProducts(newCards.length));
+      navigate("/");
     } else {
       const { products, total } = await API.GetProducts();
       newCards = products;

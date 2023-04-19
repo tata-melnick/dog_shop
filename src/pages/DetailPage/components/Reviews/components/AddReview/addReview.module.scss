@@ -15,11 +15,6 @@
   margin-bottom: 30px;
 }
 
-.btn {
-  font-size: 16px;
-  flex: 1;
-}
-
 .images {
   font-weight: 700;
   font-size: 16px;
@@ -28,9 +23,9 @@
 
 .showMore {
   display: flex;
-  // flex-direction: column;
   gap: 1rem;
   padding: 1rem 0;
+
   span {
     cursor: pointer;
     color: orange;

@@ -18,6 +18,10 @@ const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
     required: "review обязателен",
   });
 
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   const sendReview = async (data) => {
     try {
       const review = await API.AddReview(productId, { text: data.review, rating: rate });
@@ -36,8 +40,8 @@ const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
   return (
     <div id="reviews" className={styles.headLine}>
       <h1 className={styles.title}>Отзывы</h1>
-      <Button type="outline" className={styles.btn} onClick={() => setShowForm(true)}>
-        Написать отзыв
+      <Button type="outline" onClick={toggleForm}>
+        {showForm ? "Закрыть форму" : "Написать отзыв"}
       </Button>
       {showForm && (
         <Form submitForm={handleSubmit(sendReview)}>

@@ -10,7 +10,7 @@ interface IFormProps {
 const Form: React.FC<IFormProps> = ({ children, submitForm }) => {
   return (
     <form onSubmit={submitForm} className={cn("form", styles.container)}>
-      <h1 className="title">Оставьте ваш отзыв</h1>
+      <h1 className={styles.title}>Оставьте ваш отзыв</h1>
       {children}
     </form>
   );
