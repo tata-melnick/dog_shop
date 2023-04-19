@@ -37,7 +37,7 @@ const HeadLineProduct: React.FC<IHeadLineProductProps> = ({ name, reviews }) => 
           Артикул: <b>2388907</b>
         </div>
         <Rating rating={averageRating} />
-        <Button link="#" className={styles.reviews}>
+        <Button link="#reviews" className={styles.reviews}>
           {getStr(reviews?.length)}
         </Button>
       </div>

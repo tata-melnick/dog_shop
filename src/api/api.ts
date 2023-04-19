@@ -193,7 +193,7 @@ class API {
     return response.json();
   }
 
-  static async GetUserById(users: string, userId: string): Promise<UserType> {
+  static async GetUserById(users: UserType, userId: string): Promise<UserType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/${users}/${userId}`, {
       method: "GET",

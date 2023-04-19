@@ -40,6 +40,18 @@
   text-decoration-line: underline;
 
   &:hover {
-  color: $blue;
+    color: $blue;
+  }
 }
+
+.skipLink {
+  margin-right: 1rem;
+  position: absolute;
+  transform: translateX(-200%);
+  transition: transform 0.3s;
+
+  &:focus {
+    position: static;
+    transform: translateX(0);
+  }
 }

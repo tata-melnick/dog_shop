@@ -20,7 +20,7 @@ export type AuthorType = {
 };
 
 export type ReviewType = {
-  author: string;
+  author: UserType;
   created_at: string;
   product: string;
   rating: number;

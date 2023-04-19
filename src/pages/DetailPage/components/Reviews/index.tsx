@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AddReview, ListReviews } from "./components";
 import { useAppDispatch } from "../../../../store";
 import { ProductType, ReviewType } from "../../../../api";
-import { setProductDetail } from "../../../../store/products/actions";
+import { setProduct } from "../../../../store/products/actions";
 
 interface IReviewsProps {
   productId: string;
@@ -16,7 +16,7 @@ const Reviews: React.FC<IReviewsProps> = ({ productId, initReviews }) => {
 
   const setData = (product: ProductType) => {
     if (text) setText("");
-    dispatch(setProductDetail(product));
+    dispatch(setProduct(product));
     setReviews([...product.reviews].reverse());
   };
 

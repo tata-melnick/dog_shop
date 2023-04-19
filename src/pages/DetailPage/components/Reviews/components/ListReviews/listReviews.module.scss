@@ -6,7 +6,6 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  margin-bottom: 40px;
 }
 
 .review {
@@ -61,8 +60,8 @@
 
 .btn {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 18px;
+  top: 18px;
 
   &:hover {
     color: $red;

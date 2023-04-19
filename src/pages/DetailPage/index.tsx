@@ -6,7 +6,7 @@ import { API } from "../../api";
 import { Loader } from "../../components";
 import { ImagesModal } from "../../Modals";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { setProductDetail } from "../../store/products/actions";
+import { setProduct } from "../../store/products/actions";
 
 const DetailPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,10 +16,10 @@ const DetailPage: React.FC = () => {
 
   useEffect(() => {
     API.GetProductById(productId).then((resp) => {
-      dispatch(setProductDetail(resp));
+      dispatch(setProduct(resp));
     });
     return () => {
-      dispatch(setProductDetail(null));
+      dispatch(setProduct(null));
     };
   }, []);
 

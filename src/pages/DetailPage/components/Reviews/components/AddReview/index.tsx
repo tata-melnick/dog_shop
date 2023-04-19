@@ -20,9 +20,10 @@ const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
 
   const sendReview = async (data) => {
     try {
-      const product = await API.AddReview(productId, { text: data.review, rating: rate });
+      const review = await API.AddReview(productId, { text: data.review, rating: rate });
       setShowForm(false);
-      setData(product);
+      setData(review);
+      setRate(0);
       reset();
       // eslint-disable-next-line no-alert
       alert("Ваш отзыв успешно отправлен");
@@ -33,7 +34,7 @@ const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
   };
 
   return (
-    <div className={styles.headLine}>
+    <div id="reviews" className={styles.headLine}>
       <h1 className={styles.title}>Отзывы</h1>
       <Button type="outline" className={styles.btn} onClick={() => setShowForm(true)}>
         Написать отзыв

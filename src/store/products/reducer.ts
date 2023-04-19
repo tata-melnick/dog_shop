@@ -4,7 +4,7 @@ import {
   SET_FAVORITES_PRODUCTS,
   SET_LIKES_PRODUCTS,
   // SET_BASKET,
-  SET_PRODUCT_DETAIL,
+  SET_PRODUCT,
 } from "./actions";
 import { ProductsType, ProductType } from "../../api";
 
@@ -36,7 +36,7 @@ function productReducer(state = initialState, action) {
       return { ...state, likes: action.payload };
     case IS_AMOUNT_PRODUCTS:
       return { ...state, amount: action.payload };
-    case SET_PRODUCT_DETAIL:
+    case SET_PRODUCT:
       return { ...state, product: action.payload };
     // case SET_BASKET:
     //   return { ...state, basket: action.payload };
