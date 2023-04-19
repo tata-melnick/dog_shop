@@ -1,4 +1,4 @@
-# React Dog shops
+# React Dog shop
 
 ## Install dependencies:
 ### `npm install`
