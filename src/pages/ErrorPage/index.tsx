@@ -9,7 +9,7 @@ const NotFoundPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>404 no found</h1>
+      <h1 className={styles.title}>404 not found</h1>
       <Button type="outline" onClick={goToProducts}>
         На главную
       </Button>
