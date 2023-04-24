@@ -1,4 +1,5 @@
 export { default as Button } from "./Button";
+export { default as BasketButton } from "./BasketButton";
 export { default as CardsList } from "./CardsList";
 export { default as Loader } from "./Loader";
 export { default as NotFound } from "./NotFound";
@@ -7,8 +8,10 @@ export { default as Search } from "./SearchProduct";
 export { default as SortOptions } from "./SortOptions";
 export { default as Rating } from "./Rating";
 export { default as Badge } from "./Badge";
-export { default as Bubble } from "./Bubble";
 export { default as Like } from "./Like";
 export { default as Form } from "./Form";
 export { default as Modal } from "./Modal";
 export { default as Input } from "./Input";
+export { default as Delivery } from "./Delivery";
+export { default as Notifications } from "./Notifications";
+export { default as Paginator } from "./Paginator";

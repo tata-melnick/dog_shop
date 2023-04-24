@@ -11,7 +11,7 @@ const FavoritesPage: React.FC = () => {
   const { favorites } = useAppSelector((store) => store.products);
   const { isLoad } = useAppSelector((store) => store.settings);
 
-  const goToProducts = () => navigate("/");
+  const goBack = () => navigate(-1);
 
   return (
     <div className={styles.container}>
@@ -21,13 +21,13 @@ const FavoritesPage: React.FC = () => {
         <>
           <div className={styles.wrap}>
             <BackIcon />
-            <Button onClick={goToProducts} className={styles.btn}>
+            <Button onClick={goBack} className={styles.btn}>
               Назад
             </Button>
           </div>
           <h1 className={styles.title}>Избранное</h1>
           {favorites.length ? (
-            <CardsList cards={favorites} />
+            <CardsList products={favorites} />
           ) : (
             <NotFound
               title="В Избранном пока ничего нет"

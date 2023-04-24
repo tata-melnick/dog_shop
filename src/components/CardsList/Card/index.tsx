@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import Button from "../../Button";
@@ -9,25 +9,17 @@ import Like from "../../Like";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setFavoritesProducts } from "../../../store/products/actions";
 import RouterNames from "../../../constants/routes";
+import BasketButton from "../../BasketButton";
 
-const Card: React.FC<ProductType> = ({
-  pictures,
-  _id,
-  price,
-  name,
-  discount,
-  tags,
-  likes: initLikes,
-  wight,
-}) => {
+const Card: React.FC<ProductType> = (props) => {
+  const { pictures, _id, price, name, discount, tags, likes: initLikes, wight } = props;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { all, favorites } = useAppSelector((state) => state.products);
-
   const { data } = useAppSelector((state) => state.user);
   const [likes, setLikes] = useState<Array<string>>(initLikes);
-  // const [addBasket, setAddBasket] = useState<string>("");
+  const [isNew, setIsNew] = useState<boolean>(false);
 
   const goToProduct = () => navigate(`${RouterNames.detail}?id=${_id}`);
 
@@ -42,26 +34,21 @@ const Card: React.FC<ProductType> = ({
     dispatch(setFavoritesProducts(newFavorites));
   };
 
-  // const handleBasket = () => {
-  //   const addProduct = all._id.includes(_id, !addBasket.includes(data.id));
-  //   setAddBasket(addProduct.addBasket);
-  //   console.log(addProduct);
-  //
-  //   let newBasket = "";
-  //   if (basket.includes(data.id))
-  //     newBasket = [...basket, all.find((el) => el.products._id === addProduct.products._id)];
-  //   else newBasket = basket.filter((el) => el.products._id !== addProduct.products._id);
-  //   dispatch(setIsBasket(newBasket));
-  // };
+  useEffect(() => {
+    if (tags)
+      tags.forEach((tag) => {
+        if (tag.toLowerCase() === "new") setIsNew(true);
+      });
+  }, []);
 
   return (
     <div className={styles.card}>
       <div className={cn(styles.sticky, styles.stickyLeft)}>
-        {tags.includes("new") && <Badge label="new" color="violet" />}
+        {isNew && <Badge label="new" color="violet" />}
         {!!discount && <Badge label={`-${discount}%`} color="yellow" />}
       </div>
       <Like
-        isLiked={likes.includes(data._id)}
+        isLiked={likes.includes(data?._id)}
         onClick={handleLike}
         outerClass={`${styles.sticky} ${styles.stickyRight}`}
       />
@@ -80,7 +67,7 @@ const Card: React.FC<ProductType> = ({
         <div className={styles.wight}>{wight}</div>
         <p className={styles.name}>{name}</p>
       </Button>
-      <Button type="filled">В корзину</Button>
+      <BasketButton product={props} single className={styles.btn} />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "../Button";
-import NotFoundIcon from "../../icons/NotFoundIcon";
 import styles from "./notAuth.module.scss";
 import { setModalAuth } from "../../store/modals/actions";
 import { useAppDispatch } from "../../store";
+import { DogIcon } from "../../icons";
 
 const NotAuth: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,12 +12,12 @@ const NotAuth: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.notAuth}>
-        <NotFoundIcon />
+        <DogIcon />
         <div className={styles.title}>
           Авторизуйтесь, чтобы воспользоваться услугами нашего магазина.
         </div>
         <Button type="outline" onClick={goToAuth}>
-          К авторизации
+          Авторизоваться
         </Button>
       </div>
     </div>

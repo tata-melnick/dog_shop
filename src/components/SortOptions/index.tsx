@@ -1,11 +1,11 @@
-import React from "react";
-import Button from "../Button";
-import styles from "./sortOptions.module.scss";
+import React, { useEffect } from "react";
+import cn from "classnames";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { ProductsType } from "../../api";
-import { setAllProducts } from "../../store/products/actions";
+import Button from "../Button";
+import { setAllProducts, setSortOption, SortValues } from "../../store/products/actions";
+import styles from "./sortOptions.module.scss";
 
-type SortValues = "popular" | "new" | "cheapFirst" | "dearFirst" | "rating" | "discount";
 type SortOptionsType = Array<{ name: string; value: SortValues }>;
 
 const options: SortOptionsType = [
@@ -19,11 +19,12 @@ const options: SortOptionsType = [
 
 const SortOptions: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { all } = useAppSelector((state) => state.products);
+  const { all, sortOption } = useAppSelector((state) => state.products);
 
   const setCards = (cards: ProductsType) => dispatch(setAllProducts(cards));
 
   const sort = (value: SortValues) => {
+    dispatch(setSortOption(value));
     switch (value) {
       case "popular": {
         setCards([...all.sort((a, b) => b.likes.length - a.likes.length)]);
@@ -32,25 +33,41 @@ const SortOptions: React.FC = () => {
       case "new": {
         setCards([
           ...all.sort(
-            (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+            (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
           ),
         ]);
         break;
       }
       case "cheapFirst": {
-        setCards([...all.sort((a, b) => a.price - b.price)]);
+        setCards([
+          ...all.sort((a, b) => {
+            const aD = Math.round(a.price - a.price * (a.discount / 100));
+            const bD = Math.round(b.price - b.price * (b.discount / 100));
+            return aD - bD;
+          }),
+        ]);
         break;
       }
       case "dearFirst": {
-        setCards([...all.sort((a, b) => b.price - a.price)]);
+        setCards([
+          ...all.sort((a, b) => {
+            const aD = Math.round(a.price - a.price * (a.discount / 100));
+            const bD = Math.round(b.price - b.price * (b.discount / 100));
+            return bD - aD;
+          }),
+        ]);
         break;
       }
       case "rating": {
         setCards([
           ...all.sort((a, b) => {
-            const aR = a.reviews.reduce((sum, el) => sum + el.rating, 0) / a.reviews.length;
-            const bR = b.reviews.reduce((sum, el) => sum + el.rating, 0) / b.reviews.length;
-            return aR - bR;
+            const aR = a.reviews.length
+              ? a.reviews.reduce((sum, el) => sum + el.rating, 0) / a.reviews.length
+              : 0;
+            const bR = b.reviews.length
+              ? b.reviews.reduce((sum, el) => sum + el.rating, 0) / b.reviews.length
+              : 0;
+            return bR - aR;
           }),
         ]);
         break;
@@ -64,10 +81,19 @@ const SortOptions: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (sortOption) sort(sortOption);
+  }, []);
+
   return (
     <div className={styles.sort}>
       {options.map((el) => (
-        <Button type="text" className={styles.btn} key={el.value} onClick={() => sort(el.value)}>
+        <Button
+          type="text"
+          className={cn([styles.btn, { [styles.btnActive]: el.value === sortOption }])}
+          key={el.value}
+          onClick={() => sort(el.value)}
+        >
           {el.name}
         </Button>
       ))}

@@ -1,0 +1,38 @@
+@import "./src/constants/colors";
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: $black;
+  line-height: 1;
+
+  &Old {
+    text-decoration: line-through;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+}
+
+.discount {
+  color: $red;
+}
+
+.favorites {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 10px;
+  color: $grey;
+}
+
+.btn {
+  margin-bottom: 20px;
+}

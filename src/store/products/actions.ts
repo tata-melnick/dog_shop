@@ -5,7 +5,10 @@ export const SET_FAVORITES_PRODUCTS = "SET_FAVORITES_PRODUCTS";
 export const SET_LIKES_PRODUCTS = "SET_LIKES_PRODUCTS";
 export const IS_AMOUNT_PRODUCTS = "IS_AMOUNT_PRODUCTS";
 export const SET_PRODUCT = "SET_PRODUCT";
-// export const SET_BASKET = "SET_BASKET";
+export const ADD_BASKET_ITEM = "ADD_BASKET_ITEM";
+export const REMOVE_BASKET_ITEM = "REMOVE_BASKET_ITEM";
+export const DELETE_BASKET_ITEM = "DELETE_BASKET_ITEM";
+export const SET_SORT_OPTION = "SET_SORT_OPTION";
 
 export const setAllProducts = (payload: ProductsType) => ({
   type: SET_ALL_PRODUCTS,
@@ -27,8 +30,21 @@ export const setProduct = (payload: ProductType) => ({
   type: SET_PRODUCT,
   payload,
 });
+export const addBasketItem = (payload: ProductType) => ({
+  type: ADD_BASKET_ITEM,
+  payload,
+});
+export const removeBasketItem = (payload: string) => ({
+  type: REMOVE_BASKET_ITEM,
+  payload,
+});
+export const deleteBasketItem = (payload: string) => ({
+  type: DELETE_BASKET_ITEM,
+  payload,
+});
 
-// export const setIsBasket = (payload: {id:string,  } ) => ({
-//   type: SET_BASKET,
-//   payload,
-// });
+export type SortValues = "popular" | "new" | "cheapFirst" | "dearFirst" | "rating" | "discount";
+export const setSortOption = (payload: SortValues) => ({
+  type: SET_SORT_OPTION,
+  payload,
+});

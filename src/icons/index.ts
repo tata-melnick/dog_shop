@@ -1,4 +1,5 @@
 export { default as LogoIcon } from "./LogoIcon";
+export { default as BackIcon } from "./BackIcon";
 export { default as CloseIcon } from "./CloseIcon";
 export { default as CloseModalIcon } from "./CloseModalIcon";
 export { default as FavoritesIcon } from "./FavoritesIcon";
@@ -13,6 +14,8 @@ export { default as LikeIcon } from "./LikeIcon";
 export { default as Star } from "./Star";
 export { default as MinusIcon } from "./MinusIcon";
 export { default as PlusIcon } from "./PlusIcon";
-export { default as QualityIcon } from "./QualityIcon";
+export { default as GuaranteeIcon } from "./GuaranteeIcon";
 export { default as TruckIcon } from "./TruckIcon";
 export { default as TrashBinIcon } from "./TrashBinIcon";
+export { default as GoOutIcon } from "./GoOutIcon";
+export { default as DogIcon } from "./DogIcon";

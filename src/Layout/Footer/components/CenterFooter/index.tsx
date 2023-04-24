@@ -2,11 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components";
 import styles from "./centerFooter.module.scss";
+import { useAppSelector } from "../../../../store";
 
 const CenterFooter: React.FC = () => {
   const navigate = useNavigate();
+  const { token } = useAppSelector((state) => state.user);
+
   const goToProducts = () => navigate("/");
-  const goToFaq = () => navigate("/faq");
+  const goToFaq = () => {
+    !token ? navigate("/") : navigate("/faq");
+  };
+
   return (
     <div className={styles.container}>
       <Button type="text" onClick={goToProducts}>

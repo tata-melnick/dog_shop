@@ -43,7 +43,7 @@ export type NewProductType = {
   stock: number;
   wight: string;
   description: string;
-  className: string;
+  tags?: Array<string>;
 };
 
 export type ProductType = NewProductType & {

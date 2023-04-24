@@ -1,0 +1,48 @@
+@import "./src/constants/colors";
+
+.headLine {
+  flex: 1;
+  height: max-content;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 800;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.images {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.showMore {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+
+  span {
+    cursor: pointer;
+    color: orange;
+  }
+}
+
+.text {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #666666;
+  outline: none;
+  padding: 10px;
+  resize: none;
+
+  &:focus {
+    background: #FFFFFF;
+    border: 1px solid $darkBlue;
+  }
+
+}

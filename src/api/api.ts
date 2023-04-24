@@ -79,7 +79,7 @@ class API {
     return response.json();
   }
 
-  static async EditProduct(productId: string): Promise<ProductsType> {
+  static async EditProduct(productId: string, data: NewProductType): Promise<ProductType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/${productId}`, {
       method: "PATCH",
@@ -87,11 +87,12 @@ class API {
         "Content-Type": "application/json",
         ...(token && { authorization: `Bearer ${token}` }),
       },
+      body: JSON.stringify(data),
     });
     return response.json();
   }
 
-  static async DeleteProduct(productId: string): Promise<ProductsType> {
+  static async DeleteProduct(productId: string): Promise<any> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/${productId}`, {
       method: "DELETE",
@@ -205,26 +206,28 @@ class API {
     return response.json();
   }
 
-  static async EditUserInfo(users: string, me: string): Promise<UserType> {
+  static async EditUserInfo(body: Pick<UserType, "name" | "about">): Promise<UserType> {
     const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}//${users}/${me}`, {
+    const response = await fetch(`${this.options.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         ...(token && { authorization: `Bearer ${token}` }),
       },
+      body: JSON.stringify(body),
     });
     return response.json();
   }
 
-  static async EditUserAvatar(users: string, me: string, avatar: string): Promise<UserType> {
+  static async EditUserAvatar(avatar: string): Promise<UserType> {
     const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}//${users}/${me}/${avatar}`, {
+    const response = await fetch(`${this.options.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         ...(token && { authorization: `Bearer ${token}` }),
       },
+      body: JSON.stringify({ avatar }),
     });
     return response.json();
   }

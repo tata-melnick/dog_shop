@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Product, Reviews } from "./components";
+import Product from "./Product";
+import Reviews from "./Reviews";
 import styles from "./detailPage.module.scss";
 import { API } from "../../api";
 import { Loader } from "../../components";

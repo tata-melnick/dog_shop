@@ -2,7 +2,8 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import { AuthModal, RecoverModal, RegistrationModal } from "../Modals";
+import { AuthModal, RecoverModal, RegistrationModal, EditModal } from "../Modals";
+import { Notifications } from "../components";
 
 const Layout: React.FC = () => {
   return (
@@ -13,6 +14,8 @@ const Layout: React.FC = () => {
       <AuthModal />
       <RegistrationModal />
       <RecoverModal />
+      <EditModal />
+      <Notifications />
     </>
   );
 };

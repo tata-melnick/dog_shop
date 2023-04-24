@@ -1,0 +1,20 @@
+.container {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  border-radius: 10px;
+  color: black;
+  padding: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.error {
+  border: 2px solid #FF8F75;
+  background: #FF8F7599;
+}
+
+.success {
+  border: 2px solid #4FFF5C;
+  background: #4FFF5C99;
+}

@@ -6,11 +6,7 @@ import { CloseIcon } from "../../icons";
 import { API, ProductsType } from "../../api";
 import useDebounce from "../../helpers/debounce";
 import { useAppDispatch, useAppSelector } from "../../store";
-import {
-  setAllProducts,
-  setFavoritesProducts,
-  setIsAmountProducts,
-} from "../../store/products/actions";
+import { setAllProducts, setIsAmountProducts } from "../../store/products/actions";
 import { setInputValue, setIsLoad, setIsSearchValue } from "../../store/settings/actions";
 import Input from "../Input";
 
@@ -19,7 +15,7 @@ const SearchProduct: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { inputValue } = useAppSelector((state) => state.settings);
-  const { data, token } = useAppSelector((state) => state.user);
+  const { token } = useAppSelector((state) => state.user);
   const debounceValue = useDebounce<string>(inputValue, 1000);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -30,17 +26,13 @@ const SearchProduct: React.FC = () => {
     if (!token) return;
     dispatch(setIsLoad(true));
     let newCards: ProductsType;
-    let newFavorites: ProductsType;
     if (debounceValue) {
       newCards = await API.SearchProducts(debounceValue);
       dispatch(setIsAmountProducts(newCards.length));
-      navigate("/");
     } else {
       const { products, total } = await API.GetProducts();
       newCards = products;
       dispatch(setIsAmountProducts(total));
-      newFavorites = newCards.filter((el) => el.likes.includes(data?._id));
-      dispatch(setFavoritesProducts(newFavorites));
     }
     dispatch(setAllProducts(newCards));
     dispatch(setIsSearchValue(inputValue));
@@ -48,23 +40,31 @@ const SearchProduct: React.FC = () => {
   };
 
   useEffect(() => {
-    search().catch((e) => console.error(e));
-  }, [debounceValue, token, data, pathname]);
+    if (pathname !== "/" && debounceValue) navigate("/");
+  }, [debounceValue]);
+
+  useEffect(() => {
+    if (pathname === "/") search().catch((e) => console.error(e));
+  }, [debounceValue, token, pathname]);
 
   return (
     <div className={styles.searchLb}>
-      <Input
-        type="text"
-        value={inputValue}
-        onChange={handleChange}
-        id="close"
-        placeholder="Поиск"
-        place="search"
-      />
-      {!!inputValue && (
-        <Button onClick={delValue} link="#" className={styles.btnClose}>
-          <CloseIcon />
-        </Button>
+      {token && (
+        <>
+          <Input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            id="close"
+            placeholder="Поиск"
+            place="search"
+          />
+          {!!inputValue && (
+            <Button onClick={delValue} link="#" className={styles.btnClose}>
+              <CloseIcon />
+            </Button>
+          )}
+        </>
       )}
     </div>
   );

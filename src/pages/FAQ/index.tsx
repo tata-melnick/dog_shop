@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import dataFaq from "./dataFaq";
-import Accordion from "../../components/Accordion";
+import Accordion from "./Accordion";
 import rndStr from "../../helpers/randomStr";
 import { useAppSelector } from "../../store";
 import { Loader } from "../../components";
@@ -13,7 +13,7 @@ const FAQ: React.FC = () => {
   const navigate = useNavigate();
   const { isLoad } = useAppSelector((store) => store.settings);
 
-  const goToProducts = () => navigate("/");
+  const goBack = () => navigate(-1);
 
   return (
     <div className={styles.container}>
@@ -23,7 +23,7 @@ const FAQ: React.FC = () => {
         <>
           <div className={styles.wrap}>
             <BackIcon />
-            <Button onClick={goToProducts} className={styles.btn}>
+            <Button onClick={goBack} className={styles.btn}>
               Назад
             </Button>
           </div>

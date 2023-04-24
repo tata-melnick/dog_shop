@@ -1,0 +1,110 @@
+@import "./src/constants/colors";
+
+.titleWrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 32px;
+  text-align: center;
+  flex: 1;
+  color: #000000;
+}
+
+.close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 17px;
+}
+
+.btnText {
+  color: $grey;
+
+  &:hover {
+    color: $darkBlue;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 20px;
+  flex: 1 1;
+  width: 100%;
+  height: 100%;
+}
+
+.wrap {
+  display: flex;
+  margin-bottom: 5px;
+
+  & .btn {
+    font-size: 14px;
+    font-weight: 400;
+    color: $grey;
+  }
+}
+
+.form {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 28px;
+}
+
+.image {
+  width: 350px;
+  height: 350px;
+  border-radius: 15%;
+  object-fit: contain;
+}
+
+.inputs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50%;
+  row-gap: 25px;
+  font-size: 17px;
+
+  textarea {
+    resize: none;
+    font-size: 18px;
+    line-height: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 5px;
+  }
+}
+
+.row {
+  display: flex;
+  column-gap: 10px;
+}
+
+.error {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
+  color: $red;
+}

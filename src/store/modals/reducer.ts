@@ -1,5 +1,6 @@
 import {
   SET_MODAL_AUTH,
+  SET_MODAL_EDIT,
   SET_MODAL_IMAGE,
   SET_MODAL_RECOVER,
   SET_MODAL_REGISTRATION,
@@ -8,6 +9,7 @@ import {
 
 interface IInitialState {
   auth: boolean;
+  edit: boolean;
   registration: boolean;
   recover: boolean;
   image: SetImagePayload;
@@ -17,6 +19,7 @@ const initialState: IInitialState = {
   auth: false,
   registration: false,
   recover: false,
+  edit: false,
   image: null,
 };
 
@@ -33,6 +36,9 @@ function modalsReducer(state = initialState, action) {
 
     case SET_MODAL_IMAGE:
       return { ...state, image: action.payload };
+
+    case SET_MODAL_EDIT:
+      return { ...state, edit: action.payload };
 
     default:
       return state;
