@@ -17,7 +17,7 @@ const Accordion: React.FC<IAccordionProps> = ({ children, title }) => {
 
   return (
     <div className={cn(styles.accordion, { [styles.active]: selected })}>
-      <Button className={styles.accordionBtn} onClick={() => toggleState()}>
+      <Button className={styles.accordionBtn} onClick={toggleState}>
         <p className={styles.title}>{title}</p>
       </Button>
       <div className={styles.content}>

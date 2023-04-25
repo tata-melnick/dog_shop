@@ -4,7 +4,7 @@ import styles from "./searchProduct.module.scss";
 import Button from "../Button";
 import { CloseIcon } from "../../icons";
 import { API, ProductsType } from "../../api";
-import useDebounce from "../../helpers/debounce";
+import useDebounce from "../../hooks/useDebounce";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setAllProducts, setIsAmountProducts } from "../../store/products/actions";
 import { setInputValue, setIsLoad, setIsSearchValue } from "../../store/settings/actions";

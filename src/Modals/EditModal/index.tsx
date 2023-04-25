@@ -36,7 +36,7 @@ const EditModal: React.FC = () => {
   const handleSetPictures = (e: ChangeEvent<HTMLInputElement>) => setPictures(e.target.value);
 
   const submit: SubmitHandler<NewProductType> = async (data) => {
-    let resp: ProductType = null;
+    let resp: ProductType;
     const newAll: Array<ProductType> = [...all];
     if (!product) {
       resp = await API.AddNewProduct({ ...data, pictures, tags: ["NEW"] });
