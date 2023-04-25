@@ -22,7 +22,7 @@ const BasketButton: React.FC<IBasketButtonProps> = ({ product, single, className
   const remove = () => dispatch(removeBasketItem(product._id));
 
   return (
-    <div className={cn(styles.btns, className)}>
+    <div className={cn(styles.bins, className)}>
       {(!single || (single && amount > 0)) && (
         <div className={styles.controls}>
           <Button type="text" onClick={remove} disabled={amount === 0}>

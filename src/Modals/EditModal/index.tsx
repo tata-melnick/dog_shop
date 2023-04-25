@@ -58,7 +58,7 @@ const EditModal: React.FC = () => {
   }, [product, edit]);
 
   return (
-    <Modal open={edit} onClose={closeModal} size="largest">
+    <Modal open={edit} onClose={closeModal} size="medium">
       <div className={styles.titleWrap}>
         <h1 className={styles.title}>{product ? product.name : "Добавление нового товара"}</h1>
         <Button onClick={closeModal} className={styles.close}>

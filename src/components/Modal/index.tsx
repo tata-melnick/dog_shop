@@ -5,7 +5,7 @@ import styles from "./modal.module.scss";
 interface IModalProps {
   open: boolean;
   onClose(): void;
-  size?: "default" | "largest";
+  size?: "default" | "medium" | "largest";
   children?: React.ReactNode;
 }
 
@@ -19,7 +19,13 @@ const Modal: React.FC<IModalProps> = ({ children, open, onClose, size = "default
   if (!open) return null;
   return (
     <div onClick={missClick} className={styles.wrapper}>
-      <div ref={ref} className={cn([styles.modal, { [styles.modalLargest]: size === "largest" }])}>
+      <div
+        ref={ref}
+        className={cn([
+          styles.modal,
+          { [styles.modalLargest]: size === "largest", [styles.modalMedium]: size === "medium" },
+        ])}
+      >
         {children}
       </div>
     </div>

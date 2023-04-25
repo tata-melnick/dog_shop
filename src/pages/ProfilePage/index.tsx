@@ -87,7 +87,7 @@ const ProfilePage: React.FC = () => {
                 place="modal"
                 onChange={handleSetAvatar}
               />
-              <Button type="filled" disabled={disable} onClick={edit}>
+              <Button type="filled" disabled={disable} onClick={edit} className={styles.save}>
                 Сохранить изменения
               </Button>
             </div>

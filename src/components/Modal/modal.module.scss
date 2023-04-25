@@ -24,6 +24,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  &Medium {
+    width: 1000px;
+  }
   &Largest {
     width: 80%;
   }

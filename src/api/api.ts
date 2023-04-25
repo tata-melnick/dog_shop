@@ -12,7 +12,6 @@ import {
   UsersType,
   UserType,
 } from "./types";
-// import MyData from "../data.json";
 import { TOKEN } from "../constants/storage";
 
 type OptionsType = {
@@ -25,8 +24,6 @@ class API {
     baseUrl: "https://api.react-learning.ru",
     groupId: "/v2/group-10",
   };
-
-  // options: OptionsType = null;
 
   // ПРО ПРОДУКТЫ
 
@@ -144,18 +141,6 @@ class API {
     return response.json();
   }
 
-  static async GetReviews(): Promise<Array<Array<ReviewType>>> {
-    const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}/products/review`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        ...(token && { authorization: `Bearer ${token}` }),
-      },
-    });
-    return response.json();
-  }
-
   static async GetReviewsById(productId: string): Promise<Array<ReviewType>> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}/products/review/${productId}`, {
@@ -185,18 +170,6 @@ class API {
   static async GetUserInfo(): Promise<UserType> {
     const token = window.sessionStorage.getItem(TOKEN);
     const response = await fetch(`${this.options.baseUrl}${this.options.groupId}/users/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        ...(token && { authorization: `Bearer ${token}` }),
-      },
-    });
-    return response.json();
-  }
-
-  static async GetUserById(users: UserType, userId: string): Promise<UserType> {
-    const token = window.sessionStorage.getItem(TOKEN);
-    const response = await fetch(`${this.options.baseUrl}/${users}/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

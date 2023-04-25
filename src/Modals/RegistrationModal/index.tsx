@@ -29,6 +29,7 @@ const RegistrationModal: React.FC = () => {
     closeModal();
     dispatch(setModalAuth(true));
   };
+
   const handleSetEmail = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const handleSetPassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
   const handleSetVerifyPassword = (e: ChangeEvent<HTMLInputElement>) =>

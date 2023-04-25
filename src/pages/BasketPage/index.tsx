@@ -98,9 +98,7 @@ const BasketPage: React.FC = () => {
               </div>
               <div className={styles.sum}>
                 <p>{costGoods} ₽</p>
-                <p className={styles.sumDiscount}>
-                  {totalDiscount > 0 && "-"} {totalDiscount} ₽
-                </p>
+                <p className={styles.sumDiscount}>{0 - totalDiscount} ₽</p>
               </div>
             </div>
             <div className={styles.total}>

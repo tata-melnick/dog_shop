@@ -8,7 +8,7 @@ import { addNotify } from "../../../../../store/notifications/actions";
 
 interface IAddReviewProps {
   productId: string;
-  setData(post: ProductType): void;
+  setData(product: ProductType): void;
 }
 
 const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
