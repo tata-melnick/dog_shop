@@ -16,6 +16,7 @@ import { API } from "./api";
 import { useAppDispatch, useAppSelector } from "./store";
 import { setUserData } from "./store/user/actions";
 import { setFavoritesProducts } from "./store/products/actions";
+import { setModalAuth } from "./store/modals/actions";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,7 +25,8 @@ const App: React.FC = () => {
   const { token, data } = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    if (window.sessionStorage.getItem(TOKEN))
+    if (!token) dispatch(setModalAuth(true));
+    else if (window.sessionStorage.getItem(TOKEN))
       API.GetUserInfo().then((resp) =>
         dispatch(setUserData({ data: resp, token: window.sessionStorage.getItem(TOKEN) }))
       );
