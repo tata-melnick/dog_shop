@@ -47,12 +47,10 @@ const Header: React.FC = () => {
             <Button className={styles.icon} onClick={token ? goToProfile : openAuthModal}>
               <ProfileIcon />
             </Button>
+            <Button className={styles.icon} onClick={logout}>
+              <GoOutIcon />
+            </Button>
           </>
-        )}
-        {!!token && (
-          <Button className={styles.icon} onClick={logout}>
-            <GoOutIcon />
-          </Button>
         )}
       </div>
     </div>
