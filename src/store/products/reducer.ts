@@ -8,6 +8,7 @@ import {
   SET_LIKES_PRODUCTS,
   SET_PRODUCT,
   SET_SORT_OPTION,
+  SET_CHART,
   SortValues,
 } from "./actions";
 import { ProductsType, ProductType } from "../../api";
@@ -22,6 +23,7 @@ interface IInitialState {
   product: ProductType;
   basket: Array<BasketItemType>;
   sortOption: SortValues;
+  chart: ProductsType;
 }
 
 const initialState: IInitialState = {
@@ -32,6 +34,7 @@ const initialState: IInitialState = {
   product: null,
   basket: [],
   sortOption: null,
+  chart: [],
 };
 
 function productReducer(state = initialState, action) {
@@ -80,6 +83,10 @@ function productReducer(state = initialState, action) {
 
     case SET_SORT_OPTION: {
       return { ...state, sortOption: action.payload };
+    }
+
+    case SET_CHART: {
+      return { ...state, chart: action.payload };
     }
     default:
       return state;

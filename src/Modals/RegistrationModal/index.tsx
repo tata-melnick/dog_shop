@@ -12,7 +12,7 @@ const RegistrationModal: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [verifyPassword, setVerifyPassword] = useState<string>("");
-  const { invalidEmail, passValidInfo } = useValidate({
+  const { emailValidInfo, passValidInfo } = useValidate({
     email,
     passwords: { mainPass: password, verifyPass: verifyPassword },
   });
@@ -49,30 +49,42 @@ const RegistrationModal: React.FC = () => {
           <CloseModalIcon />
         </Button>
       </div>
-      <Input
-        withoutAutocomplete
-        value={email}
-        onChange={handleSetEmail}
-        type="email"
-        placeholder="Email"
-        place="modal"
-      />
-      <Input
-        withoutAutocomplete
-        value={password}
-        onChange={handleSetPassword}
-        type="password"
-        placeholder="Пароль"
-        place="modal"
-      />
-      <Input
-        withoutAutocomplete
-        value={verifyPassword}
-        onChange={handleSetVerifyPassword}
-        type="password"
-        placeholder="Пароль"
-        place="modal"
-      />
+      <div className={styles.input}>
+        <Input
+          withoutAutocomplete
+          value={email}
+          onChange={handleSetEmail}
+          type="email"
+          placeholder="Email"
+          place="modal"
+          error={emailValidInfo.invalid}
+        />
+        <div className={styles.error}>{emailValidInfo.message}</div>
+      </div>
+      <div className={styles.input}>
+        <Input
+          withoutAutocomplete
+          value={password}
+          onChange={handleSetPassword}
+          type="password"
+          placeholder="Пароль"
+          place="modal"
+          error={passValidInfo.mainPass.invalid}
+        />
+        <div className={styles.error}>{passValidInfo.mainPass.message}</div>
+      </div>
+      <div className={styles.input}>
+        <Input
+          withoutAutocomplete
+          value={verifyPassword}
+          onChange={handleSetVerifyPassword}
+          type="password"
+          placeholder="Пароль"
+          place="modal"
+          error={passValidInfo.verifyPass.invalid}
+        />
+        <div className={styles.error}>{passValidInfo.verifyPass.message}</div>
+      </div>
       <p className={styles.paragraph}>
         Регистрируясь на сайте, вы соглашаетесь с нашими Правилами и Политикой конфиденциальности и
         соглашаетесь на информационную рассылку.
@@ -80,7 +92,7 @@ const RegistrationModal: React.FC = () => {
       <Button
         type="filled"
         disabled={
-          invalidEmail ||
+          emailValidInfo.invalid ||
           passValidInfo.mainPass.invalid ||
           passValidInfo.verifyPass.invalid ||
           !email ||

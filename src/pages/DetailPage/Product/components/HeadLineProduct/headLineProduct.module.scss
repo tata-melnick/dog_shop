@@ -16,20 +16,19 @@
     font-weight: 400;
     color: $grey;
   }
+}
 
-  .btn {
-    font-size: 15px;
-    font-weight:800;
+.btn {
+  font-size: 15px;
+  font-weight:800;
 
-    &:hover {
-      color: $darkBlue;
-    }
+  &:hover {
+    color: $darkBlue;
   }
+}
 
-  .editBtn {
-    margin-left: auto;
-  }
-
+.editBtn {
+  margin-left: auto;
 }
 
 .title {

@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 type PropsType = {
   email?: string;
   passwords?: {
-    mainPass: string;
-    verifyPass: string;
+    mainPass?: string;
+    verifyPass?: string;
   };
 };
+
+type EmailValidType = {
+  invalid: boolean;
+  message: string;
+};
+
 type PassValidType = {
   invalid: boolean;
   message: string;
@@ -16,7 +22,7 @@ export type PassValidInfoType = {
   verifyPass: PassValidType;
 };
 type ReturnType = {
-  invalidEmail?: boolean;
+  emailValidInfo?: EmailValidType;
   passValidInfo?: PassValidInfoType;
 };
 interface IUseValidate {
@@ -29,7 +35,10 @@ const regUpperCase = /[A-Z]/;
 const regLatin = /[a-zA-Z]/;
 
 const useValidate: IUseValidate = ({ email, passwords = {} }) => {
-  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const [emailValidInfo, setEmailValidInfo] = useState<EmailValidType>({
+    invalid: false,
+    message: "",
+  });
   const [mainPassInfo, setMainPassInfo] = useState<PassValidType>({
     invalid: false,
     message: "",
@@ -41,10 +50,15 @@ const useValidate: IUseValidate = ({ email, passwords = {} }) => {
 
   const emailValidate = () => {
     if (email.length === 0) {
-      setInvalidEmail(false);
+      setEmailValidInfo({ invalid: false, message: "" });
       return;
     }
-    setInvalidEmail(!regValidEmail.test(email));
+    if (!regValidEmail.test(email)) {
+      setEmailValidInfo({
+        invalid: true,
+        message: "Не правильный email",
+      });
+    }
   };
 
   const mainPassValidate = () => {
@@ -83,7 +97,7 @@ const useValidate: IUseValidate = ({ email, passwords = {} }) => {
   }, [passwords?.verifyPass, passwords?.mainPass, email]);
 
   return {
-    ...(email && { invalidEmail }),
+    ...(email !== undefined && { emailValidInfo }),
     ...(passwords && { passValidInfo: { mainPass: mainPassInfo, verifyPass: verifyPassInfo } }),
   };
 };

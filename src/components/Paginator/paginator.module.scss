@@ -30,6 +30,13 @@
   }
 }
 
+.delimiter {
+  pointer-events: none;
+  &:hover {
+    background: white;
+  }
+}
+
 .chevronButtonDisabled {
   color: #ccc;
   pointer-events: none;

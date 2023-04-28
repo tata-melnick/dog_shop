@@ -65,7 +65,7 @@ const ProfilePage: React.FC = () => {
           <div className={styles.form}>
             <img src={avatar} alt="avatar" className={styles.avatar} />
             <div className={styles.inputs}>
-              <Input type="email" placeholder="Email" place="modal" value={data.email} />
+              <Input type="email" placeholder="Email" place="modal" value={data.email} notChange />
               <Input
                 type="name"
                 placeholder="Имя"

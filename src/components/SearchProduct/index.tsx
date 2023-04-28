@@ -21,9 +21,7 @@ const SearchProduct: React.FC = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     dispatch(setInputValue(e.target.value));
   const delValue = () => dispatch(setInputValue(""));
-
   const search = async () => {
-    if (!token) return;
     dispatch(setIsLoad(true));
     let newCards: ProductsType;
     if (debounceValue) {
@@ -44,7 +42,7 @@ const SearchProduct: React.FC = () => {
   }, [debounceValue]);
 
   useEffect(() => {
-    if (pathname === "/") search().catch((e) => console.error(e));
+    if (pathname === "/" && token) search().catch((e) => console.error(e));
   }, [debounceValue, token, pathname]);
 
   return (

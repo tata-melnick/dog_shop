@@ -14,7 +14,7 @@ interface IAddReviewProps {
 const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
   const dispatch = useAppDispatch();
   const [showForm, setShowForm] = useState(false);
-  const [rate, setRate] = useState<number>(0);
+  const [rate, setRate] = useState<number>(1);
 
   const { register, handleSubmit, reset } = useForm({ mode: "onSubmit" });
   const textRegister = register("review", {
@@ -23,7 +23,7 @@ const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
 
   const toggleForm = () => {
     setShowForm(!showForm);
-    setRate(0);
+    setRate(1);
   };
 
   const sendReview = async (data) => {
@@ -33,7 +33,7 @@ const AddReview: React.FC<IAddReviewProps> = ({ productId, setData }) => {
     else {
       setShowForm(false);
       setData(review);
-      setRate(0);
+      setRate(1);
       reset();
       dispatch(addNotify({ text: "Ваш отзыв успешно отправлен", type: "success" }));
     }

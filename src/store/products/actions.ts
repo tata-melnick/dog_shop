@@ -9,6 +9,7 @@ export const ADD_BASKET_ITEM = "ADD_BASKET_ITEM";
 export const REMOVE_BASKET_ITEM = "REMOVE_BASKET_ITEM";
 export const DELETE_BASKET_ITEM = "DELETE_BASKET_ITEM";
 export const SET_SORT_OPTION = "SET_SORT_OPTION";
+export const SET_CHART = "SET_CHART";
 
 export const setAllProducts = (payload: ProductsType) => ({
   type: SET_ALL_PRODUCTS,
@@ -46,5 +47,10 @@ export const deleteBasketItem = (payload: string) => ({
 export type SortValues = "popular" | "new" | "cheapFirst" | "dearFirst" | "rating" | "discount";
 export const setSortOption = (payload: SortValues) => ({
   type: SET_SORT_OPTION,
+  payload,
+});
+
+export const setChart = (payload: ProductsType) => ({
+  type: SET_CHART,
   payload,
 });

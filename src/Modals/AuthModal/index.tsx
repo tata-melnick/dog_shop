@@ -7,12 +7,17 @@ import { Button, Modal, Input } from "../../components";
 import { setUserData } from "../../store/user/actions";
 import { setModalAuth, setModalRecover, setModalRegistration } from "../../store/modals/actions";
 import styles from "./authModal.module.scss";
+import useValidate from "../../hooks/useValidate";
 
 const AuthModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { auth } = useAppSelector((state) => state.modals);
+  const { emailValidInfo, passValidInfo } = useValidate({
+    email,
+    passwords: { mainPass: password },
+  });
 
   const closeModal = () => {
     dispatch(setModalAuth(false));
@@ -47,26 +52,38 @@ const AuthModal: React.FC = () => {
           <CloseModalIcon />
         </Button>
       </div>
-      <Input
-        value={email}
-        onChange={handleSetEmail}
-        type="email"
-        placeholder="Email"
-        place="modal"
-      />
-      <Input
-        value={password}
-        onChange={handleSetPassword}
-        type="password"
-        placeholder="Пароль"
-        place="modal"
-      />
+      <div className={styles.input}>
+        <Input
+          value={email}
+          onChange={handleSetEmail}
+          type="email"
+          placeholder="Email"
+          place="modal"
+          error={emailValidInfo.invalid}
+        />
+        <div className={styles.error}>{emailValidInfo.message}</div>
+      </div>
+      <div className={styles.input}>
+        <Input
+          value={password}
+          onChange={handleSetPassword}
+          type="password"
+          placeholder="Пароль"
+          place="modal"
+          error={passValidInfo.mainPass.invalid}
+        />
+        <div className={styles.error}>{passValidInfo.mainPass.message}</div>
+      </div>
       <div className={styles.btn}>
         <Button type="text" className={styles.btnText} onClick={openRecover}>
           Восстановить пароль
         </Button>
       </div>
-      <Button type="filled" disabled={!email || !password} onClick={handleSignIn}>
+      <Button
+        type="filled"
+        disabled={emailValidInfo.invalid || passValidInfo.mainPass.invalid}
+        onClick={handleSignIn}
+      >
         Войти
       </Button>
       <Button type="outline" onClick={openRegistration}>

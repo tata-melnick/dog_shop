@@ -31,11 +31,10 @@
   outline: none;
 
   &:focus {
-    background: #FFFFFF;
+    background: #ffffff;
     border: 1px solid #66666640;
   }
 }
-
 
 .modal {
   border-radius: 15px;
@@ -43,11 +42,23 @@
   outline: none;
 
   &:focus {
-    background: #FFFFFF;
+    background: #ffffff;
     border: 1px solid $darkBlue;
   }
 }
 
+.error {
+  border: 1px solid #e14981;
+  &:hover,
+  &:focus {
+    border: 1px solid #e14981;
+  }
+}
+
+.notChange:focus, .notChange:hover {
+  border: 1px solid #666666;
+  cursor: default;
+}
 
 .btnClose {
   position: absolute;
@@ -61,6 +72,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }

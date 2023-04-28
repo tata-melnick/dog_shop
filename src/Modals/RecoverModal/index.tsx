@@ -15,7 +15,10 @@ const RecoverModal: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [token, setToken] = useState<string>("");
   const [isConfirm, setIsConfirm] = useState<boolean>(false);
-  const { invalidEmail } = useValidate({ email });
+  const { emailValidInfo, passValidInfo } = useValidate({
+    email,
+    passwords: { mainPass: password },
+  });
   const { recover } = useAppSelector((state) => state.modals);
 
   const closeModal = () => {
@@ -59,36 +62,46 @@ const RecoverModal: React.FC = () => {
         Для получения временного пароля необходимо ввести email, указанный при регистрации.
       </p>
       {!isConfirm && (
-        <Input
-          value={email}
-          onChange={handleSetEmail}
-          type="email"
-          placeholder="Email"
-          place="modal"
-        />
+        <div className={styles.input}>
+          <Input
+            value={email}
+            onChange={handleSetEmail}
+            type="email"
+            placeholder="Email"
+            place="modal"
+            error={emailValidInfo.invalid}
+          />
+          <div className={styles.error}>{emailValidInfo.message}</div>
+        </div>
       )}
       {isConfirm && (
         <>
-          <Input
-            value={token}
-            onChange={handleSetToken}
-            type="text"
-            placeholder="Token"
-            place="modal"
-          />
-          <Input
-            value={password}
-            onChange={handleSetPassword}
-            type="password"
-            placeholder="Password"
-            place="modal"
-          />
+          <div className={styles.input}>
+            <Input
+              value={token}
+              onChange={handleSetToken}
+              type="text"
+              placeholder="Token"
+              place="modal"
+            />
+          </div>
+          <div>
+            <Input
+              value={password}
+              onChange={handleSetPassword}
+              type="password"
+              placeholder="Password"
+              place="modal"
+              error={passValidInfo.mainPass.invalid}
+            />
+            <div className={styles.error}>{passValidInfo.mainPass.message}</div>
+          </div>
         </>
       )}
       <p className={styles.paragraph}>Срок действия временного пароля 24 ч.</p>
       <Button
         type="filled"
-        disabled={(!isConfirm && (invalidEmail || !email)) || (isConfirm && !password)}
+        disabled={(!isConfirm && (emailValidInfo.invalid || !email)) || (isConfirm && !password)}
         onClick={isConfirm ? handleConfirm : handleRecover}
       >
         {isConfirm ? "Установить новый пароль" : "Отправить токен"}

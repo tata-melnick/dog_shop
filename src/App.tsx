@@ -15,30 +15,32 @@ import { TOKEN } from "./constants/storage";
 import { API } from "./api";
 import { useAppDispatch, useAppSelector } from "./store";
 import { setUserData } from "./store/user/actions";
-import { setFavoritesProducts } from "./store/products/actions";
+import { setAllProducts, setChart, setFavoritesProducts } from "./store/products/actions";
 import { setModalAuth } from "./store/modals/actions";
+import ChartPage from "./pages/ChartPage";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { token, data } = useAppSelector((state) => state.user);
+  const { data, token } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (!token) dispatch(setModalAuth(true));
-    else if (window.sessionStorage.getItem(TOKEN))
-      API.GetUserInfo().then((resp) =>
-        dispatch(setUserData({ data: resp, token: window.sessionStorage.getItem(TOKEN) }))
-      );
-  }, [token]);
+    else if (!data && window.sessionStorage.getItem(TOKEN))
+      API.GetUserInfo().then((resp) => dispatch(setUserData({ data: resp })));
+  }, [token, data]);
 
   useEffect(() => {
-    if (token && data)
+    if (data && token)
       API.GetProducts().then(({ products }) => {
+        dispatch(setAllProducts(products));
         const newFavorites = products.filter((el) => el.likes.includes(data?._id));
         dispatch(setFavoritesProducts(newFavorites));
+        const popular = [...products.sort((a, b) => b.likes.length - a.likes.length)].slice(0, 10);
+        dispatch(setChart(popular));
       });
-  }, [token, data]);
+  }, [data, token]);
 
   useEffect(() => {
     if (pathname !== "/" && !token) navigate("/");
@@ -53,6 +55,7 @@ const App: React.FC = () => {
         <Route path={RouterNames.faq} element={<FAQ />} />
         <Route path={RouterNames.profile} element={<ProfilePage />} />
         <Route path={RouterNames.basket} element={<BasketPage />} />
+        <Route path={RouterNames.chart} element={<ChartPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

@@ -11,11 +11,25 @@ interface IInputProps {
   onChange?(e: ChangeEvent<HTMLInputElement>): void;
   withoutAutocomplete?: boolean;
   place?: "search" | "modal";
+  error?: boolean;
+  notChange?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
   (
-    { type, label, id, placeholder, value, onChange, withoutAutocomplete, place, ...props },
+    {
+      type,
+      label,
+      id,
+      placeholder,
+      value,
+      onChange,
+      withoutAutocomplete,
+      place,
+      error,
+      notChange,
+      ...props
+    },
     ref
   ) => (
     <label htmlFor="close" className={styles.searchLb}>
@@ -29,6 +43,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
           styles.input,
           { [styles.search]: place === "search" },
           { [styles.modal]: place === "modal" },
+          { [styles.error]: error },
+          { [styles.notChange]: notChange },
         ])}
         placeholder={label || placeholder}
         value={value}
