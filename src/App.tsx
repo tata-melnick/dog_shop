@@ -15,7 +15,7 @@ import { TOKEN } from "./constants/storage";
 import { API } from "./api";
 import { useAppDispatch, useAppSelector } from "./store";
 import { setUserData } from "./store/user/actions";
-import { setAllProducts, setChart, setFavoritesProducts } from "./store/products/actions";
+import { setChart, setFavoritesProducts } from "./store/products/actions";
 import { setModalAuth } from "./store/modals/actions";
 import ChartPage from "./pages/ChartPage";
 
@@ -34,7 +34,6 @@ const App: React.FC = () => {
   useEffect(() => {
     if (data && token)
       API.GetProducts().then(({ products }) => {
-        dispatch(setAllProducts(products));
         const newFavorites = products.filter((el) => el.likes.includes(data?._id));
         dispatch(setFavoritesProducts(newFavorites));
         const popular = [...products.sort((a, b) => b.likes.length - a.likes.length)].slice(0, 10);

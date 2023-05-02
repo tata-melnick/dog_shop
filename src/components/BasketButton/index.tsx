@@ -23,7 +23,7 @@ const BasketButton: React.FC<IBasketButtonProps> = ({ product, single, className
 
   return (
     <div className={cn(styles.bins, className)}>
-      {(!single || (single && amount > 0)) && (
+      {(!single || amount > 0) && (
         <div className={styles.controls}>
           <Button type="text" onClick={remove} disabled={amount === 0}>
             <MinusIcon disabled={amount === 0} />
@@ -34,7 +34,7 @@ const BasketButton: React.FC<IBasketButtonProps> = ({ product, single, className
           </Button>
         </div>
       )}
-      {(!single || (single && !amount)) && (
+      {(!single || !amount) && (
         <Button type="filled" className={styles.btn} onClick={add} disabled={amount > 0}>
           {amount > 0 ? "В корзине" : "В корзину"}
         </Button>
