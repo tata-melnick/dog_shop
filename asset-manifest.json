@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dog_shop/static/css/main.8c87b582.css",
+    "main.js": "/dog_shop/static/js/main.b5eeb4d6.js",
+    "index.html": "/dog_shop/index.html",
+    "main.8c87b582.css.map": "/dog_shop/static/css/main.8c87b582.css.map",
+    "main.b5eeb4d6.js.map": "/dog_shop/static/js/main.b5eeb4d6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8c87b582.css",
+    "static/js/main.b5eeb4d6.js"
+  ]
+}
